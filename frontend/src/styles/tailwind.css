@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+@theme {
+  --color-omarchy-bg: #09060f;
+  --color-omarchy-surface: #120e1a;
+  --color-omarchy-panel: #1a1424;
+  --color-omarchy-border: #32283f;
+  --color-omarchy-muted: #8a7f9c;
+  --color-omarchy-text: #f4eef8;
+  --color-omarchy-dim: #c4b8d4;
+
+  --color-omarchy-accent: #c4b5fd;
+  --color-omarchy-accent-dim: #a78bfa;
+  --color-omarchy-accent-glow: rgba(196, 181, 253, 0.4);
+  --color-omarchy-accent-soft: rgba(167, 139, 250, 0.14);
+
+  --color-omarchy-rose: #ff6b9d;
+  --color-omarchy-rose-dim: #f43f5e;
+  --color-omarchy-rose-glow: rgba(255, 107, 157, 0.45);
+  --color-omarchy-rose-soft: rgba(244, 63, 94, 0.16);
+
+  --color-omarchy-glass: rgba(12, 8, 20, 0.8);
+  --color-omarchy-success: #6ee7b7;
+  --color-omarchy-danger: #fb7185;
+
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+}
+
+@keyframes cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes grid-drift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-omarchy-bg);
+  color: var(--color-omarchy-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-omarchy-rose);
+  color: #12081a;
+}
+
+.omarchy-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 65% 50% at 38% 30%, rgba(167, 139, 250, 0.18) 0%, transparent 58%),
+    radial-gradient(ellipse 60% 50% at 82% 70%, rgba(255, 107, 157, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 30% at 15% 85%, rgba(244, 63, 94, 0.1) 0%, transparent 50%),
+    linear-gradient(165deg, #100c18 0%, #09060f 48%, #0d0914 100%);
+}
+
+.omarchy-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(196, 181, 253, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 107, 157, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-drift 28s linear infinite;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.omarchy-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.045;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.glass {
+  background: var(--color-omarchy-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.scrollbar-omarchy::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-omarchy::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-omarchy::-webkit-scrollbar-thumb {
+  background: var(--color-omarchy-border);
+}
+
+.scrollbar-omarchy::-webkit-scrollbar-thumb:hover {
+  background: var(--color-omarchy-muted);
+}
+
+.omarchy-light-shell {
+  --color-omarchy-bg: #f7f2fb;
+  --color-omarchy-surface: #fcfafd;
+  --color-omarchy-panel: #f1e9f7;
+  --color-omarchy-border: #dfd0ea;
+  --color-omarchy-muted: #847494;
+  --color-omarchy-text: #1c1228;
+  --color-omarchy-dim: #534461;
+  --color-omarchy-accent: #7c3aed;
+  --color-omarchy-accent-dim: #6d28d9;
+  --color-omarchy-accent-glow: rgba(124, 58, 237, 0.26);
+  --color-omarchy-accent-soft: rgba(124, 58, 237, 0.1);
+  --color-omarchy-rose: #e11d48;
+  --color-omarchy-rose-dim: #be123c;
+  --color-omarchy-rose-glow: rgba(225, 29, 72, 0.28);
+  --color-omarchy-rose-soft: rgba(225, 29, 72, 0.1);
+  --color-omarchy-glass: rgba(252, 250, 253, 0.84);
+  --color-omarchy-success: #047857;
+  --color-omarchy-danger: #e11d48;
+  background: var(--color-omarchy-bg);
+  color: var(--color-omarchy-text);
+}
+
+.omarchy-light-shell .omarchy-bg {
+  background:
+    radial-gradient(ellipse 65% 50% at 40% 30%, rgba(167, 139, 250, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 82% 72%, rgba(244, 63, 94, 0.16) 0%, transparent 50%),
+    linear-gradient(165deg, #faf6ff 0%, #fff1f5 100%);
+}
+
+.omarchy-light-shell .omarchy-grid {
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(225, 29, 72, 0.07) 1px, transparent 1px);
+}
+
+.omarchy-gradient-text {
+  background: linear-gradient(105deg, var(--color-omarchy-accent) 0%, var(--color-omarchy-rose) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.omarchy-gradient-bar {
+  background: linear-gradient(
+    90deg,
+    var(--color-omarchy-accent) 0%,
+    var(--color-omarchy-rose) 100%
+  );
+}
+
+:focus-visible {
+  outline: 1px solid var(--color-omarchy-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .omarchy-grid {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <rect width="640" height="360" fill="#120e1a"/>
+  <rect x="24" y="24" width="592" height="312" stroke="#ff6b9d" stroke-opacity="0.4" stroke-width="1"/>
+  <circle cx="120" cy="170" r="28" stroke="#c4b5fd" stroke-width="2"/>
+  <path d="M120 198v48M96 246h48" stroke="#ff6b9d" stroke-width="2"/>
+  <circle cx="148" cy="150" r="8" fill="#ff6b9d" fill-opacity="0.7"/>
+  <text x="210" y="160" fill="#c4b5fd" font-family="monospace" font-size="28" font-weight="700">Civic Eye</text>
+  <text x="210" y="196" fill="#ff6b9d" font-family="monospace" font-size="14">YOLOv8 · 92% · SIH 2025</text>
+  <text x="210" y="230" fill="#8a7f9c" font-family="monospace" font-size="12">GPS issues · blockchain audit</text>
+</svg>

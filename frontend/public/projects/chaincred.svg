@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <rect width="640" height="360" fill="#120e1a"/>
+  <rect x="24" y="24" width="592" height="312" stroke="#c4b5fd" stroke-opacity="0.4" stroke-width="1"/>
+  <rect x="90" y="130" width="70" height="90" stroke="#c4b5fd" stroke-width="2"/>
+  <path d="M125 130v-24h40v24" stroke="#ff6b9d" stroke-width="2"/>
+  <circle cx="125" cy="175" r="4" fill="#ff6b9d"/>
+  <text x="210" y="160" fill="#ff6b9d" font-family="monospace" font-size="28" font-weight="700">ChainCred</text>
+  <text x="210" y="196" fill="#c4b8d4" font-family="monospace" font-size="14">verifiable credentials · &lt;2 min</text>
+  <text x="210" y="230" fill="#8a7f9c" font-family="monospace" font-size="12">opBNB · DeSoc · BNB Hackathon</text>
+</svg>

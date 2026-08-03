@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <rect width="640" height="360" fill="#120e1a"/>
+  <rect x="24" y="24" width="592" height="312" stroke="#ff6b9d" stroke-opacity="0.45" stroke-width="1"/>
+  <circle cx="120" cy="180" r="54" stroke="#c4b5fd" stroke-width="2"/>
+  <path d="M80 180h80M120 140v80" stroke="#ff6b9d" stroke-width="2"/>
+  <text x="210" y="160" fill="#c4b5fd" font-family="monospace" font-size="28" font-weight="700">CryptGuard</text>
+  <text x="210" y="196" fill="#ff6b9d" font-family="monospace" font-size="14">DPI · 22K+ flows/sec · 99%</text>
+  <text x="210" y="230" fill="#8a7f9c" font-family="monospace" font-size="12">encrypted traffic · zero-decrypt</text>
+</svg>

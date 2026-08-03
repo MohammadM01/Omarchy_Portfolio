@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#09060f"/>
+  <rect x="48" y="48" width="1104" height="534" stroke="#c4b5fd" stroke-opacity="0.45" stroke-width="2"/>
+  <circle cx="980" cy="480" r="140" fill="#ff6b9d" fill-opacity="0.16"/>
+  <circle cx="220" cy="200" r="160" fill="#a78bfa" fill-opacity="0.12"/>
+  <text x="100" y="220" fill="#ff6b9d" font-family="monospace" font-size="28" letter-spacing="8">OMARCHY</text>
+  <text x="100" y="320" fill="#f4eef8" font-family="monospace" font-size="56" font-weight="700">Mohammad Mulla</text>
+  <text x="100" y="380" fill="#c4b5fd" font-family="monospace" font-size="28">Software Engineer · Full-Stack &amp; AI</text>
+  <text x="100" y="480" fill="#ff6b9d" font-family="monospace" font-size="20">SIH 1st · National Runner-up · BNB Honorable Mention</text>
+</svg>
