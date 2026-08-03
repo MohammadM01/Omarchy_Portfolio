@@ -2,12 +2,12 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
 const TYPE_CLASS = {
-  plain: 'text-omarchy-text',
-  dim: 'text-omarchy-muted',
-  accent: 'text-omarchy-accent',
-  ok: 'text-omarchy-success',
-  error: 'text-omarchy-danger',
-  prompt: 'text-omarchy-dim',
+  plain: 'text-win-text',
+  dim: 'text-win-muted',
+  accent: 'text-win-accent',
+  ok: 'text-win-success',
+  error: 'text-win-danger',
+  prompt: 'text-win-dim',
 }
 
 export function TerminalLine({ type = 'plain', text }) {

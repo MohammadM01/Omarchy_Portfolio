@@ -1,23 +1,22 @@
-/** App-wide constants */
-
-export const BOOT_STORAGE_KEY = 'hasBooted'
+export const BOOT_STORAGE_KEY = 'win12_booted'
 
 export const STORAGE_KEYS = {
-  theme: 'theme',
-  preset: 'preset',
-  sound: 'sound',
-  windows: 'windows',
-  termBanner: 'termBanner',
+  theme: 'win12_theme',
+  wallpaper: 'win12_wallpaper',
+  windows: 'win12_windows_v2',
+  termBanner: 'win12_termBanner',
   boot: BOOT_STORAGE_KEY,
+  desktopIcons: 'win12_desktop_icons_v3',
 }
+
+export const PORTFOLIO_REPO_URL =
+  'https://github.com/MohammadM01/Omarchy_Portfolio'
 
 export const API_BASE = import.meta.env.VITE_API_URL || ''
 
-export const DOCK_MOBILE_IDS = [
-  'terminal',
+export const MOBILE_TASKBAR_IDS = [
   'about',
   'projects',
-  'github',
+  'terminal',
   'contact',
-  'resume',
 ]

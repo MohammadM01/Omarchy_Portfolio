@@ -1,7 +1,8 @@
 import { Window } from '../ui/Window'
 import { Button } from '../ui/Button'
 import { BadgeList } from '../ui/Badge'
-import { Monogram } from '../ui/OmarchyMark'
+import { WinLogo } from '../ui/WinLogo'
+import { ProfilePhoto } from '../ui/ProfilePhoto'
 import { TypeCursor } from '../ui/TypeCursor'
 import { useTerminal } from '../../contexts/TerminalContext'
 import { useWindows } from '../../contexts/WindowContext'
@@ -16,19 +17,24 @@ export function WelcomeWindow() {
   const { output, reduced } = useRevealText(line, { speed: 14 })
 
   return (
-    <Window id="welcome" title="welcome — Omarchy" width={500}>
+    <Window id="welcome" title="Welcome — Windows 12" width={520}>
       <div className="space-y-4">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-omarchy-accent">
-          session ready
-        </p>
-        <div className="flex items-start gap-3">
-          <Monogram value={profile.monogram} size="md" className="shrink-0" />
-          <div>
-            <h1 className="font-mono text-xl font-semibold text-omarchy-text md:text-2xl">
+        <div className="flex flex-col items-center gap-4 pb-1 text-center sm:flex-row sm:items-center sm:text-left">
+          <div className="relative shrink-0">
+            <ProfilePhoto size="lg" rounded="xl" className="!h-24 !w-24 shadow-xl" />
+            <span className="absolute -bottom-1 -right-1 grid h-8 w-8 place-items-center rounded-full bg-[color-mix(in_srgb,var(--color-win-bg)_80%,transparent)] shadow-md ring-1 ring-white/30">
+              <WinLogo className="h-6 w-6" glow />
+            </span>
+          </div>
+          <div className="min-w-0">
+            <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-win-accent">
+              Desktop ready
+            </p>
+            <h1 className="text-xl font-semibold text-win-text md:text-2xl">
               {profile.name}
             </h1>
-            <p className="text-sm text-omarchy-dim">{profile.title}</p>
-            <p className="mt-1 font-mono text-[11px] text-omarchy-accent">
+            <p className="text-sm text-win-dim">{profile.title}</p>
+            <p className="mt-1 text-[11px] text-win-accent">
               {profile.availability}
             </p>
           </div>
@@ -36,7 +42,7 @@ export function WelcomeWindow() {
 
         <BadgeList items={badges} />
 
-        <p className="min-h-[2.5rem] font-mono text-xs leading-relaxed text-omarchy-muted">
+        <p className="min-h-[2.5rem] text-xs leading-relaxed text-win-muted">
           {output}
           {!reduced && <TypeCursor />}
         </p>
@@ -55,8 +61,8 @@ export function WelcomeWindow() {
             </Button>
           </a>
         </div>
-        <p className="font-mono text-[10px] text-omarchy-muted">
-          Ctrl+K command palette · Ctrl+` terminal · Ctrl+W close
+        <p className="text-[10px] text-win-muted">
+          Ctrl+K Start search · Ctrl+` terminal · Ctrl+W close
         </p>
       </div>
     </Window>

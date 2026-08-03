@@ -6,7 +6,7 @@ import { Input, TextArea } from '../ui/Input'
 import { profile } from '../../data/portfolioData'
 import { Check, Loader2 } from 'lucide-react'
 import { useToast } from '../../contexts/ToastContext'
-import { useSound } from '../../contexts/ThemeContext'
+import { useSound } from '../../contexts/SoundContext'
 import { API_BASE } from '../../constants'
 
 export function ContactWindow() {
@@ -69,18 +69,18 @@ export function ContactWindow() {
   }
 
   return (
-    <Window id="contact" title="contact.md" width={480}>
+    <Window id="contact" title="Contact" width={480}>
       <div className="mb-4 space-y-1">
-        <p className="text-sm text-omarchy-dim">
+        <p className="text-sm text-win-dim">
           Prefer email?{' '}
           <a
             href={`mailto:${profile.email}`}
-            className="font-mono text-omarchy-accent hover:underline"
+            className="font-mono text-win-accent hover:underline"
           >
             {profile.email}
           </a>
         </p>
-        <p className="font-mono text-[11px] text-omarchy-accent">{profile.availability}</p>
+        <p className="font-mono text-[11px] text-win-accent">{profile.availability}</p>
       </div>
 
       <form onSubmit={onSubmit} className="space-y-3" noValidate>
@@ -129,7 +129,7 @@ export function ContactWindow() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="mt-4 flex items-center gap-2 border border-omarchy-success/40 bg-omarchy-success/10 px-3 py-2 font-mono text-xs text-omarchy-success"
+            className="mt-4 flex items-center gap-2 border border-win-success/40 bg-win-success/10 px-3 py-2 font-mono text-xs text-win-success"
             role="status"
           >
             <Check className="h-3.5 w-3.5" />

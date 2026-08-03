@@ -1,4 +1,4 @@
-# Omarchy Portfolio API
+# Windows 12 Portfolio API
 
 Contact form endpoint for the frontend desktop.
 

@@ -27,7 +27,7 @@ function ensureInbox() {
 }
 
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, service: 'omarchy-backend' })
+  res.json({ ok: true, service: 'win12-backend' })
 })
 
 app.post('/api/contact', (req, res) => {
@@ -53,5 +53,5 @@ app.post('/api/contact', (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`Omarchy backend listening on http://127.0.0.1:${PORT}`)
+  console.log(`Win12 backend listening on http://127.0.0.1:${PORT}`)
 })

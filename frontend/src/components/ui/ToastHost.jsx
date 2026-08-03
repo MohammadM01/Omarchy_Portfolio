@@ -3,10 +3,10 @@ import { useToast } from '../../contexts/ToastContext'
 import clsx from 'clsx'
 
 const TONE = {
-  info: 'border-omarchy-border text-omarchy-text',
-  success: 'border-omarchy-success/50 text-omarchy-success',
-  error: 'border-omarchy-danger/50 text-omarchy-danger',
-  accent: 'border-omarchy-accent/40 text-omarchy-accent',
+  info: 'border-win-border text-win-text',
+  success: 'border-win-success/50 text-win-success',
+  error: 'border-win-danger/50 text-win-danger',
+  accent: 'border-win-accent/40 text-win-accent',
 }
 
 export function ToastHost() {
@@ -14,7 +14,7 @@ export function ToastHost() {
 
   return (
     <div
-      className="pointer-events-none absolute bottom-16 right-3 z-[90] flex w-[min(320px,calc(100%-1.5rem))] flex-col gap-2 md:bottom-4 md:right-4"
+      className="pointer-events-none absolute bottom-20 right-3 z-[90] flex w-[min(320px,calc(100%-1.5rem))] flex-col gap-2 md:right-4"
       aria-live="polite"
     >
       <AnimatePresence>
@@ -28,7 +28,7 @@ export function ToastHost() {
             transition={{ duration: 0.18 }}
             onClick={() => dismiss(t.id)}
             className={clsx(
-              'pointer-events-auto border bg-omarchy-surface/95 px-3 py-2 text-left font-mono text-[11px] shadow-lg backdrop-blur-[10px]',
+              'pointer-events-auto rounded-xl border bg-win-surface/95 px-3 py-2 text-left text-[11px] shadow-lg backdrop-blur-[10px]',
               TONE[t.tone] || TONE.info,
             )}
           >

@@ -1,23 +1,51 @@
-import { useRef } from 'react'
+import { useCallback, useRef } from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion'
-import { Minus, X, Loader2 } from 'lucide-react'
 import { useWindows } from '../../contexts/WindowContext'
 import { useIsMobile } from '../../hooks/useMediaQuery'
+import { WindowTitleBar } from './WindowControls'
+import { WINDOW_ACCENTS } from '../../data/portfolioData'
+import { AppIcon } from './AppIcon'
 
-/**
- * OS-style window shell — draggable on desktop, stacked full-width on mobile.
- */
+const MIN_W = 360
+const MIN_H = 260
+
+function ResizeHandles({ onResizeStart }) {
+  // Keep handles clear of the title-bar control buttons (top-right)
+  const edges = [
+    { dir: 'n', className: 'left-2 right-14 top-0 h-1.5 cursor-n-resize' },
+    { dir: 's', className: 'left-2 right-2 bottom-0 h-1.5 cursor-s-resize' },
+    { dir: 'e', className: 'top-10 bottom-2 right-0 w-1.5 cursor-e-resize' },
+    { dir: 'w', className: 'top-2 bottom-2 left-0 w-1.5 cursor-w-resize' },
+    { dir: 'ne', className: 'right-0 top-10 h-3 w-3 cursor-ne-resize' },
+    { dir: 'nw', className: 'left-0 top-0 h-3 w-3 cursor-nw-resize' },
+    { dir: 'se', className: 'right-0 bottom-0 h-3 w-3 cursor-se-resize' },
+    { dir: 'sw', className: 'left-0 bottom-0 h-3 w-3 cursor-sw-resize' },
+  ]
+  return edges.map((e) => (
+    <div
+      key={e.dir}
+      className={clsx('absolute z-20', e.className)}
+      onMouseDown={(ev) => onResizeStart(ev, e.dir)}
+    />
+  ))
+}
+
+ResizeHandles.propTypes = {
+  onResizeStart: PropTypes.func.isRequired,
+}
+
+/** Win12 mica window — centered, draggable, resizable. */
 export function Window({
   id,
   title,
   children,
-  width = 520,
-  height,
+  width: defaultWidth = 520,
+  height: defaultHeight = 420,
   className,
-  defaultPosition,
+  accent,
 }) {
   const nodeRef = useRef(null)
   const isMobile = useIsMobile()
@@ -26,116 +54,175 @@ export function Window({
     activeId,
     closeWindow,
     minimizeWindow,
+    maximizeWindow,
     focusWindow,
     moveWindow,
+    resizeWindow,
     isLoading,
   } = useWindows()
 
   const win = windows[id]
-  if (!win?.open || win.minimized) return null
-
+  const isVisible = Boolean(win?.open && !win?.minimized)
   const isActive = activeId === id
   const loading = isLoading(id)
+  const color = accent || WINDOW_ACCENTS[id] || '#3b91d8'
+  const w = win?.width || defaultWidth
+  const h = win?.height || defaultHeight
 
-  const content = (
-    <motion.div
-      ref={nodeRef}
-      initial={{ opacity: 0, scale: 0.96 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.98 }}
-      transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-      onMouseDown={() => focusWindow(id)}
-      style={
-        isMobile
-          ? undefined
-          : {
-              width,
-              maxHeight: height || 'min(72vh, 640px)',
-              zIndex: win.zIndex,
-            }
+  // Hooks must run every render — never after an early return
+  const onResizeStart = useCallback(
+    (e, dir) => {
+      if (!win) return
+      e.preventDefault()
+      e.stopPropagation()
+      focusWindow(id)
+      const startX = e.clientX
+      const startY = e.clientY
+      const start = { x: win.x, y: win.y, width: w, height: h }
+
+      const onMove = (ev) => {
+        const dx = ev.clientX - startX
+        const dy = ev.clientY - startY
+        let next = { ...start }
+
+        if (dir.includes('e')) next.width = start.width + dx
+        if (dir.includes('s')) next.height = start.height + dy
+        if (dir.includes('w')) {
+          next.width = start.width - dx
+          next.x = start.x + dx
+          if (next.width < MIN_W) {
+            next.x = start.x + start.width - MIN_W
+            next.width = MIN_W
+          }
+        }
+        if (dir.includes('n')) {
+          next.height = start.height - dy
+          next.y = start.y + dy
+          if (next.height < MIN_H) {
+            next.y = start.y + start.height - MIN_H
+            next.height = MIN_H
+          }
+        }
+
+        resizeWindow(id, next)
       }
-      className={clsx(
-        'pointer-events-auto flex flex-col overflow-hidden border bg-omarchy-surface/95 shadow-[0_16px_48px_rgba(0,0,0,0.55)] backdrop-blur-[10px]',
-        isActive
-          ? 'border-omarchy-rose/40 shadow-[0_16px_48px_rgba(0,0,0,0.55),0_0_0_1px_rgba(255,107,157,0.25),0_0_28px_rgba(255,107,157,0.12)]'
-          : 'border-omarchy-border',
-        isMobile
-          ? 'relative mb-3 w-full max-h-[65vh]'
-          : 'absolute',
-        className,
+
+      const onUp = () => {
+        window.removeEventListener('mousemove', onMove)
+        window.removeEventListener('mouseup', onUp)
+      }
+      window.addEventListener('mousemove', onMove)
+      window.addEventListener('mouseup', onUp)
+    },
+    [focusWindow, id, resizeWindow, win, w, h],
+  )
+
+  if (!isVisible || !win) return null
+
+  const shellClass = clsx(
+    'pointer-events-auto flex flex-col overflow-hidden border border-[var(--color-win-border)] transition-[box-shadow,background] duration-200',
+    win.maximized ? 'rounded-none' : 'rounded-[10px]',
+    isActive
+      ? 'win-mica-foc shadow-[3px_3px_28px_4px_var(--color-win-shadow)]'
+      : 'bg-[var(--color-win-unfoc)] shadow-[2px_2px_8px_var(--color-win-shadow)]',
+    className,
+  )
+
+  const chrome = (
+    <>
+      <WindowTitleBar
+        title={title}
+        accent={color}
+        icon={
+          <AppIcon
+            id={id.startsWith('project-') ? 'projects' : id}
+            size={18}
+          />
+        }
+        loading={loading}
+        isActive={isActive}
+        showMinimize={!isMobile}
+        showMaximize={!isMobile}
+        onMinimize={() => minimizeWindow(id)}
+        onMaximize={() => maximizeWindow(id)}
+        onClose={() => closeWindow(id)}
+      />
+
+      <div
+        className={clsx(
+          'scrollbar-win min-h-0 flex-1 overflow-auto p-4 md:p-5',
+          isActive
+            ? 'bg-[color-mix(in_srgb,var(--color-win-bg)_62%,transparent)]'
+            : 'bg-transparent',
+        )}
+      >
+        {children}
+      </div>
+
+      {!isMobile && !win.maximized && (
+        <ResizeHandles onResizeStart={onResizeStart} />
       )}
+    </>
+  )
+
+  if (isMobile) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.22 }}
+        onMouseDown={() => focusWindow(id)}
+        className={clsx(shellClass, 'relative mb-3 w-full max-h-[70vh]')}
+        role="dialog"
+        aria-label={title}
+        aria-modal={false}
+      >
+        {chrome}
+      </motion.div>
+    )
+  }
+
+  // Outer node owns drag transform; inner motion only fades (no transform conflict)
+  const shell = (
+    <div
+      ref={nodeRef}
+      onMouseDown={() => focusWindow(id)}
+      onDoubleClick={(e) => {
+        if (e.target.closest('.window-drag')) maximizeWindow(id)
+      }}
+      style={{
+        width: win.maximized ? '100%' : w,
+        height: win.maximized ? '100%' : h,
+        zIndex: win.zIndex,
+      }}
+      className={clsx(shellClass, 'absolute')}
       role="dialog"
       aria-label={title}
       aria-modal={false}
     >
-      {/* Title bar */}
-      <div
-        className={clsx(
-          'window-drag flex h-9 shrink-0 cursor-grab items-center justify-between border-b border-omarchy-border px-3 active:cursor-grabbing',
-          isActive ? 'bg-omarchy-panel' : 'bg-omarchy-bg/80',
-        )}
+      <motion.div
+        className="flex h-full min-h-0 w-full flex-col"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
       >
-        <div className="flex min-w-0 items-center gap-2">
-          <span
-            className={clsx(
-              'h-1.5 w-1.5 shrink-0',
-              isActive ? 'bg-omarchy-accent' : 'bg-omarchy-muted',
-            )}
-          />
-          <h2 className="truncate font-mono text-xs font-medium tracking-wide text-omarchy-text">
-            {title}
-          </h2>
-          {loading && (
-            <Loader2 className="h-3 w-3 animate-spin text-omarchy-accent" />
-          )}
-        </div>
-        <div className="flex items-center gap-0.5">
-          {!isMobile && (
-            <button
-              type="button"
-              aria-label="Minimize"
-              className="grid h-6 w-6 place-items-center text-omarchy-muted transition-colors hover:bg-omarchy-border hover:text-omarchy-text"
-              onClick={(e) => {
-                e.stopPropagation()
-                minimizeWindow(id)
-              }}
-            >
-              <Minus className="h-3.5 w-3.5" />
-            </button>
-          )}
-          <button
-            type="button"
-            aria-label="Close"
-            className="grid h-6 w-6 place-items-center text-omarchy-muted transition-colors hover:bg-omarchy-danger/20 hover:text-omarchy-danger"
-            onClick={(e) => {
-              e.stopPropagation()
-              closeWindow(id)
-            }}
-          >
-            <X className="h-3.5 w-3.5" />
-          </button>
-        </div>
-      </div>
-
-      <div className="scrollbar-omarchy flex-1 overflow-auto p-4 md:p-5">
-        {children}
-      </div>
-    </motion.div>
+        {chrome}
+      </motion.div>
+    </div>
   )
-
-  if (isMobile) return content
 
   return (
     <Draggable
       nodeRef={nodeRef}
       handle=".window-drag"
+      cancel=".window-no-drag,button,a,input,textarea,select"
       bounds="parent"
-      position={{ x: win.x, y: win.y }}
-      defaultPosition={defaultPosition}
+      disabled={win.maximized}
+      position={{ x: win.x ?? 0, y: win.y ?? 0 }}
       onStop={(_, data) => moveWindow(id, data.x, data.y)}
       onStart={() => focusWindow(id)}
     >
-      {content}
+      {shell}
     </Draggable>
   )
 }
@@ -147,8 +234,5 @@ Window.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   className: PropTypes.string,
-  defaultPosition: PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-  }),
+  accent: PropTypes.string,
 }

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { BootScreen } from './components/layout/BootScreen'
-import { DesktopShell } from './components/layout/DesktopShell'
+import { Desktop } from './components/layout/Desktop'
 import { AppProviders } from './components/layout/AppProviders'
 import { storageGet, storageSet } from './utils/storage'
 import { BOOT_STORAGE_KEY } from './constants'
@@ -30,7 +30,7 @@ export default function App() {
   return (
     <AppProviders>
       {!booted && <BootScreen onDone={onBootDone} hold={holdBoot} />}
-      {booted && <DesktopShell onReplayBoot={replayBoot} />}
+      {booted && <Desktop onReplayBoot={replayBoot} />}
     </AppProviders>
   )
 }

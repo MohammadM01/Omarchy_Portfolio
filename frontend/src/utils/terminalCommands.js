@@ -1,25 +1,23 @@
-import { catFile, formatProfileAscii, listDir } from './formatters'
+import { achievements, education, profile, projects, skills } from '../data/portfolioData'
 
 const HELP = [
-  'Omarchy shell — available commands',
+  'Windows 12 Terminal — available commands',
   '',
-  '  ls                     List directory contents',
-  '  cd <section>           Change directory (projects, ~, /)',
-  '  cat <file>             Print file contents',
-  '  ./mohammad_mulla --profile --full',
-  '                         Print ASCII profile card',
-  '  clear                  Clear the terminal',
   '  help                   Show this help',
+  '  about                  Open About / print profile',
+  '  projects               List projects',
+  '  skills                 List skills',
+  '  contact                Open contact form',
+  '  clear / cls            Clear the terminal',
+  '  theme                  Toggle light / dark',
   '  exit                   Close the terminal',
   '',
-  'Tip: open sections via dock icons or `cd projects` then `cat cryptguard.md`',
+  'Also: whoami, date, uname, open <app>',
 ]
 
 /**
- * Process a terminal command string.
  * @param {string} raw
  * @param {{ cwd: string }} state
- * @returns {{ lines: Array<{type?: string, text: string}>, cwd?: string, clear?: boolean, exit?: boolean, openWindow?: string }}
  */
 export function processCommand(raw, state) {
   const input = raw.trim()
@@ -41,99 +39,105 @@ export function processCommand(raw, state) {
     return { lines: [{ type: 'dim', text: 'Session closed.' }], exit: true }
   }
 
-  if (cmd === 'ls') {
-    const entries = listDir(state.cwd)
-    if (!entries) {
-      return {
-        lines: [{ type: 'error', text: `ls: cannot access '${state.cwd}': No such file` }],
-      }
-    }
+  if (cmd === 'theme') {
     return {
-      lines: entries.map((name) => ({
-        type: name.endsWith('/') || name.endsWith('*') ? 'accent' : 'plain',
-        text: name,
-      })),
+      lines: [{ type: 'accent', text: 'Toggling theme…' }],
+      toggleTheme: true,
     }
   }
 
-  if (cmd === 'cd') {
-    const target = (args[0] || '~').replace(/\/$/, '')
-    if (target === '~' || target === '/' || target === '..' || target === '') {
-      return { lines: [], cwd: '~' }
+  if (cmd === 'about') {
+    return {
+      lines: [
+        { type: 'accent', text: profile.name },
+        { type: 'plain', text: profile.title },
+        { type: 'dim', text: profile.summaryShort },
+        { type: 'dim', text: `${profile.email} · ${profile.location}` },
+      ],
+      openWindow: 'about',
     }
-    if (target === 'projects' || target === './projects') {
-      return { lines: [], cwd: 'projects' }
+  }
+
+  if (cmd === 'projects') {
+    return {
+      lines: [
+        { type: 'accent', text: 'Projects' },
+        ...projects.map((p) => ({
+          type: 'plain',
+          text: `  ${p.name} — ${p.subtitle}`,
+        })),
+      ],
+      openWindow: 'projects',
     }
-    const sectionMap = {
+  }
+
+  if (cmd === 'skills') {
+    const lines = [{ type: 'accent', text: 'Skills' }]
+    for (const [group, list] of Object.entries(skills)) {
+      lines.push({ type: 'dim', text: `  ${group}` })
+      lines.push({ type: 'plain', text: `    ${list.join(', ')}` })
+    }
+    return { lines, openWindow: 'skills' }
+  }
+
+  if (cmd === 'contact') {
+    return {
+      lines: [
+        { type: 'plain', text: `Email: ${profile.email}` },
+        { type: 'plain', text: `Phone: ${profile.phone}` },
+        { type: 'dim', text: 'Opening contact window…' },
+      ],
+      openWindow: 'contact',
+    }
+  }
+
+  if (cmd === 'education') {
+    return {
+      lines: [
+        { type: 'accent', text: education.degree },
+        { type: 'plain', text: education.school },
+        { type: 'dim', text: `${education.period} · CGPA ${education.cgpa}` },
+      ],
+      openWindow: 'education',
+    }
+  }
+
+  if (cmd === 'achievements' || cmd === 'awards') {
+    return {
+      lines: [
+        { type: 'accent', text: 'Achievements' },
+        ...achievements.map((a) => ({ type: 'plain', text: `  • ${a.title}` })),
+      ],
+      openWindow: 'achievements',
+    }
+  }
+
+  if (cmd === 'open') {
+    const target = (args[0] || '').toLowerCase()
+    const map = {
       about: 'about',
       experience: 'experience',
       skills: 'skills',
+      projects: 'projects',
       achievements: 'achievements',
       education: 'education',
       contact: 'contact',
-      welcome: 'welcome',
       github: 'github',
+      welcome: 'welcome',
     }
-    if (sectionMap[target]) {
+    if (map[target]) {
       return {
-        lines: [
-          {
-            type: 'dim',
-            text: `Opening ${sectionMap[target]} window…`,
-          },
-        ],
-        openWindow: sectionMap[target],
+        lines: [{ type: 'dim', text: `Opening ${map[target]}…` }],
+        openWindow: map[target],
       }
     }
     return {
-      lines: [{ type: 'error', text: `cd: no such directory: ${target}` }],
-    }
-  }
-
-  if (cmd === 'cat') {
-    if (!args[0]) {
-      return { lines: [{ type: 'error', text: 'cat: missing file operand' }] }
-    }
-    const file =
-      state.cwd === 'projects' && !args[0].includes('/')
-        ? args[0]
-        : args[0]
-    const content = catFile(file)
-    if (!content) {
-      return {
-        lines: [{ type: 'error', text: `cat: ${args[0]}: No such file` }],
-      }
-    }
-    return { lines: content.map((text) => ({ type: 'plain', text })) }
-  }
-
-  if (
-    cmd === './mohammad_mulla' ||
-    cmd === 'mohammad_mulla' ||
-    cmd === './mohammad_mulla.exe'
-  ) {
-    const flags = args.join(' ')
-    if (flags.includes('--profile') && flags.includes('--full')) {
-      return { lines: formatProfileAscii() }
-    }
-    return {
-      lines: [
-        {
-          type: 'dim',
-          text: 'Usage: ./mohammad_mulla --profile --full',
-        },
-      ],
+      lines: [{ type: 'error', text: `open: unknown app '${args[0] || ''}'` }],
     }
   }
 
   if (cmd === 'whoami') {
     return { lines: [{ type: 'accent', text: 'mohammad' }] }
-  }
-
-  if (cmd === 'pwd') {
-    return {
-      lines: [{ type: 'plain', text: state.cwd === '~' ? '/home/mohammad' : `/home/mohammad/${state.cwd}` }],
-    }
   }
 
   if (cmd === 'date') {
@@ -145,7 +149,18 @@ export function processCommand(raw, state) {
       lines: [
         {
           type: 'plain',
-          text: 'Omarchy 1.0.0 x86_64 GNU/Linux',
+          text: 'Windows_NT Win12 Portfolio 1.0.0 x86_64',
+        },
+      ],
+    }
+  }
+
+  if (cmd === 'pwd') {
+    return {
+      lines: [
+        {
+          type: 'plain',
+          text: 'C:\\Users\\Mohammad\\Desktop',
         },
       ],
     }
@@ -155,7 +170,7 @@ export function processCommand(raw, state) {
     lines: [
       {
         type: 'error',
-        text: `omarchy: command not found: ${cmd}. Type 'help' for commands.`,
+        text: `'${cmd}' is not recognized. Type 'help' for commands.`,
       },
     ],
   }

@@ -8,9 +8,9 @@ export function ProjectsWindow() {
   const { openWindow } = useWindows()
 
   return (
-    <Window id="projects" title="projects/" width={640}>
+    <Window id="projects" title="Projects" width={640}>
       <div className="mb-4 flex items-baseline justify-between gap-2">
-        <p className="font-mono text-[11px] text-omarchy-muted">
+        <p className="text-[11px] text-win-muted">
           {projects.length} projects · click to open
         </p>
       </div>
@@ -28,22 +28,22 @@ export function ProjectsWindow() {
             />
             <div className="flex flex-col gap-2 p-3 pt-1">
               <div className="flex items-start justify-between gap-2">
-                <h3 className="font-mono text-sm font-semibold text-omarchy-text group-hover:text-omarchy-accent">
+                <h3 className="font-mono text-sm font-semibold text-win-text group-hover:text-win-accent">
                   {project.name}
                 </h3>
-                <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-omarchy-muted group-hover:text-omarchy-accent" />
+                <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-win-muted group-hover:text-win-accent" />
               </div>
-              <p className="line-clamp-2 text-xs leading-relaxed text-omarchy-dim">
+              <p className="line-clamp-2 text-xs leading-relaxed text-win-dim">
                 {project.subtitle}
               </p>
               <div className="flex flex-wrap gap-2">
                 {project.metrics?.slice(0, 3).map((m, i) => (
                   <span
                     key={m.label}
-                    className={`font-mono text-[10px] ${i === 1 ? 'text-omarchy-rose' : 'text-omarchy-accent'}`}
+                    className={`font-mono text-[10px] ${i === 1 ? 'text-win-accent' : 'text-win-accent'}`}
                   >
                     {m.value}
-                    <span className="ml-1 text-omarchy-muted">{m.label}</span>
+                    <span className="ml-1 text-win-muted">{m.label}</span>
                   </span>
                 ))}
               </div>

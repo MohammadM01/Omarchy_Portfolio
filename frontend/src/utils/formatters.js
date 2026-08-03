@@ -114,7 +114,7 @@ export function catFile(name) {
 
   if (key === 'welcome.md' || key === 'welcome') {
     return [
-      `Welcome to Omarchy — ${profile.name}'s desktop.`,
+      `Welcome to Windows 12 — ${profile.name}'s desktop.`,
       profile.availability,
       'Open Terminal or use the dock to explore.',
       'Try: ./mohammad_mulla --profile --full',
