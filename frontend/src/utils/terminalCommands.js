@@ -334,6 +334,9 @@ const APP_MAP = {
   pc: 'this-pc',
   explorer: 'this-pc',
   computer: 'this-pc',
+  ai: 'ai',
+  '__ai': 'ai',
+  copilot: 'ai',
 }
 
 const KNOWN_CMDS = [

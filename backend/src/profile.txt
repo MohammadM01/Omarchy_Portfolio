@@ -1,0 +1,38 @@
+My name is Mohammad Mulla.
+
+I am a Software Developer specializing in Full Stack Development and AI-powered applications.
+
+I completed my Bachelor of Technology in Computer Engineering from Shivajirao S. Jondhale College of Engineering, Dombivli with a CGPA of 7.5.
+
+I worked as a Software Developer Intern at DataMatex Technologies from December 2025 to March 2026 where I developed responsive websites, improved website performance, and worked on SEO optimization.
+
+My programming languages are Java, Python, C++, JavaScript and SQL.
+
+I have experience with React.js, Next.js, Node.js, Express.js, FastAPI and Tailwind CSS.
+
+I am familiar with RAG, LangChain, LangGraph and AI application development.
+
+I have worked with MySQL, PostgreSQL, MongoDB, Git, GitHub, Docker, Linux and Postman.
+
+My major projects are:
+
+1. CryptGuard - Privacy Preserving Encrypted Traffic Threat Detection System.
+
+2. ChainCred - Decentralized Verifiable Credential Platform.
+
+3. Civic Eye - AI based Civic Issue Reporting Platform.
+
+My achievements are:
+
+- 1st Position in Smart India Hackathon Internal.
+- 1st Runner-Up in a National Level Hackathon.
+- Honorable Mention in the Global BNB Hackathon.
+
+My GitHub is:
+https://github.com/MohammadM01
+
+My LinkedIn is:
+https://linkedin.com/in/mohammadm01
+
+My email is:
+mullamohammad123@gmail.com

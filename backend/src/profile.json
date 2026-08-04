@@ -1,0 +1,114 @@
+{
+  "name": "Mohammad Mulla",
+  "title": "Software Developer",
+  "summary": "Software Engineer specializing in full-stack development and AI-powered systems with strong foundations in data structures, algorithms, and system design.",
+
+  "contact": {
+    "phone": "+91-8983228237",
+    "email": "mullamohammad123@gmail.com",
+    "location": "Bhiwandi, Mumbai, India",
+    "linkedin": "https://linkedin.com/in/mohammadm01",
+    "github": "https://github.com/MohammadM01"
+  },
+
+  "education": {
+    "degree": "Bachelor of Technology",
+    "branch": "Computer Engineering",
+    "college": "Shivajirao S. Jondhale College of Engineering, Dombivli",
+    "cgpa": "7.5/10",
+    "duration": "Nov 2022 - May 2026"
+  },
+
+  "experience": [
+    {
+      "company": "DataMatex Technologies",
+      "role": "Software Developer Intern",
+      "duration": "Dec 2025 - Mar 2026",
+      "work": [
+        "Developed responsive websites for 3+ local businesses.",
+        "Improved customer engagement through modern UI/UX.",
+        "Reduced page load time by 25%.",
+        "Increased inquiry form submissions by 12%."
+      ]
+    }
+  ],
+
+  "skills": {
+    "languages": [
+      "Java",
+      "Python",
+      "C++",
+      "JavaScript",
+      "SQL"
+    ],
+    "frameworks": [
+      "React.js",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "FastAPI",
+      "Tailwind CSS"
+    ],
+    "ai": [
+      "RAG",
+      "RAG Pipelines",
+      "LangChain",
+      "LangGraph"
+    ],
+    "tools": [
+      "MySQL",
+      "PostgreSQL",
+      "MongoDB",
+      "Git",
+      "GitHub",
+      "Docker",
+      "Postman",
+      "Linux"
+    ]
+  },
+
+  "projects": [
+    {
+      "name": "CryptGuard",
+      "description": "Privacy-Preserving Encrypted Traffic Threat Detection System.",
+      "technologies": [
+        "C++",
+        "Python",
+        "DPI",
+        "Machine Learning",
+        "TLS",
+        "JA3"
+      ]
+    },
+    {
+      "name": "ChainCred",
+      "description": "Decentralized Verifiable Credential Platform.",
+      "technologies": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Solidity",
+        "opBNB",
+        "BNB Greenfield"
+      ]
+    },
+    {
+      "name": "Civic Eye",
+      "description": "Unified Civic Issue Reporting and Resolution Platform.",
+      "technologies": [
+        "React",
+        "Node.js",
+        "Express",
+        "YOLOv8",
+        "Blockchain",
+        "REST APIs"
+      ]
+    }
+  ],
+
+  "achievements": [
+    "1st Position - Smart India Hackathon Internal",
+    "1st Runner-Up - National-Level Hackathon",
+    "Honorable Mention - Global BNB Hackathon"
+  ]
+}

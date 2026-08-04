@@ -98,9 +98,11 @@ export function Desktop({ onReplayBoot }) {
     <div
       className="relative flex h-full min-h-0 w-full flex-col overflow-hidden bg-transparent text-win-text"
       onContextMenu={onContextMenu}
+      role="application"
+      aria-label="Mohammad's Portfolio desktop"
     >
       <KeyboardShortcuts onOpenStart={() => setStartOpen(true)} />
-      <div className="relative min-h-0 flex-1 overflow-hidden">
+      <main className="relative min-h-0 flex-1 overflow-hidden">
         <Workspace
           onOpenApp={onAction}
           editMode={editMode}
@@ -110,7 +112,7 @@ export function Desktop({ onReplayBoot }) {
             push('Edit mode off', 'info', 1400)
           }}
         />
-      </div>
+      </main>
       <Taskbar
         onReplayBoot={onReplayBoot}
         startOpen={startOpen}

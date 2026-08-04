@@ -26,12 +26,14 @@ export function DesktopBackground() {
         <span className="desktop-glow desktop-glow--2" />
         <span className="desktop-glow desktop-glow--3" />
 
-        <div className="desktop-hero">
-          <div className="desktop-hero__grid">
-            <span className="desktop-tile desktop-tile--tl" />
-            <span className="desktop-tile desktop-tile--tr" />
-            <span className="desktop-tile desktop-tile--bl" />
-            <span className="desktop-tile desktop-tile--br" />
+        <div className="desktop-hero select-none">
+          <div className="flex flex-col items-center justify-center text-center gap-2.5 font-display px-4">
+            <h1 className="desktop-hero-text text-3xl md:text-5xl font-bold tracking-tight transition-colors duration-400">
+              Hey, I m Mohammad!
+            </h1>
+            <p className="desktop-hero-text--sub text-3xl md:text-5xl font-bold tracking-tight transition-colors duration-400">
+              Welcome to my Portfolio
+            </p>
           </div>
         </div>
       </motion.div>
@@ -68,6 +70,33 @@ export function DesktopBackground() {
               }
         }
       />
+
+      {/* Hero text on wallpaper — glass pill for readability */}
+      <div className="desktop-hero select-none">
+        <div
+          className="flex flex-col items-center justify-center text-center gap-2.5 font-display px-8 py-5 rounded-2xl"
+          style={{
+            background: isDark
+              ? 'rgba(0,0,0,0.32)'
+              : 'rgba(255,255,255,0.28)',
+            backdropFilter: 'blur(14px) saturate(1.4)',
+            WebkitBackdropFilter: 'blur(14px) saturate(1.4)',
+            boxShadow: isDark
+              ? '0 4px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08)'
+              : '0 4px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.55)',
+            border: isDark
+              ? '1px solid rgba(255,255,255,0.09)'
+              : '1px solid rgba(255,255,255,0.6)',
+          }}
+        >
+          <h1 className="desktop-hero-text text-3xl md:text-5xl font-bold tracking-tight transition-colors duration-400">
+            Hey, I m Mohammad!
+          </h1>
+          <p className="desktop-hero-text--sub text-3xl md:text-5xl font-bold tracking-tight transition-colors duration-400">
+            Welcome to my Portfolio
+          </p>
+        </div>
+      </div>
     </div>
   )
 }

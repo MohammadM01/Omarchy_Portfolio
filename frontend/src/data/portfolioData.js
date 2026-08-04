@@ -103,6 +103,7 @@ export const projects = [
     period: 'Oct 2025 - Jan 2026',
     github: 'https://github.com/MohammadM01/Chain-Cred-final',
     demo: 'https://chaincred-frontend.onrender.com/',
+    image: '/projects/chaincred.png',
     description:
       'Designed and implemented a full-stack app with wallet auth, on-chain credentials, and a React dashboard. Reduced verification time from days to under 2 minutes. Built APIs, MongoDB models, OCR flow, and resume tooling.',
     tech: ['React', 'Node.js', 'MongoDB', 'Solidity', 'opBNB', 'REST'],
@@ -171,6 +172,7 @@ export const WINDOW_ACCENTS = {
   github: '#24292F',
   contact: '#E3008C',
   terminal: '#1A1A1A',
+  ai: '#7C3AED',
   personalize: '#0078D4',
   'this-pc': '#0078D4',
   settings: '#6B6B6B',
@@ -178,7 +180,7 @@ export const WINDOW_ACCENTS = {
   feedback: '#8764B8',
 }
 
-/** Taskbar / Start pinned apps */
+/** All apps (Start menu / search) */
 export const APPS = [
   { id: 'about', label: 'About Me', accent: WINDOW_ACCENTS.about, shortcut: '1' },
   { id: 'experience', label: 'Experience', accent: WINDOW_ACCENTS.experience, shortcut: '2' },
@@ -189,4 +191,8 @@ export const APPS = [
   { id: 'github', label: 'GitHub', accent: WINDOW_ACCENTS.github, shortcut: '7' },
   { id: 'contact', label: 'Contact', accent: WINDOW_ACCENTS.contact, shortcut: '8' },
   { id: 'terminal', label: 'Terminal', accent: WINDOW_ACCENTS.terminal, shortcut: '9', kind: 'terminal' },
+  { id: 'ai', label: 'Resume Agent', accent: WINDOW_ACCENTS.ai, shortcut: '0' },
 ]
+
+/** Pinned on the taskbar only */
+export const TASKBAR_APPS = APPS.filter((a) => a.id === 'terminal' || a.id === 'ai')

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import { Sun, Moon, Search } from 'lucide-react'
-import { APPS } from '../../data/portfolioData'
+import { TASKBAR_APPS } from '../../data/portfolioData'
 import { MOBILE_TASKBAR_IDS } from '../../constants'
 import { useWindows } from '../../contexts/WindowContext'
 import { useTerminal } from '../../contexts/TerminalContext'
@@ -75,8 +75,8 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
   const isMobile = useIsMobile()
 
   const apps = useMemo(() => {
-    if (!isMobile) return APPS
-    return APPS.filter((a) => MOBILE_TASKBAR_IDS.includes(a.id))
+    if (!isMobile) return TASKBAR_APPS
+    return TASKBAR_APPS.filter((a) => MOBILE_TASKBAR_IDS.includes(a.id))
   }, [isMobile])
 
   const launch = (app) => {

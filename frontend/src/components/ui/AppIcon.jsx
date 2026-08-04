@@ -7,7 +7,6 @@ import {
   Code24Color,
   Trophy24Color,
   Mail24Color,
-  Prompt24Filled,
   HatGraduation24Filled,
   Globe24Color,
   Document24Color,
@@ -76,12 +75,164 @@ function ThisPCMark({ size }) {
 
 ThisPCMark.propTypes = { size: PropTypes.number }
 
+/** Original __ Ai brand mark — underscore bars + luminous core */
+function AiMark({ size }) {
+  const uid = useId().replace(/:/g, '')
+  return (
+    <svg viewBox="0 0 48 48" width={size} height={size} aria-hidden>
+      <defs>
+        <linearGradient id={`${uid}-tile`} x1="6" y1="4" x2="42" y2="44">
+          <stop stopColor="#1E1B4B" />
+          <stop offset="0.55" stopColor="#312E81" />
+          <stop offset="1" stopColor="#0F172A" />
+        </linearGradient>
+        <radialGradient id={`${uid}-core`} cx="50%" cy="42%" r="55%">
+          <stop stopColor="#E0E7FF" />
+          <stop offset="0.35" stopColor="#A5B4FC" />
+          <stop offset="0.7" stopColor="#6366F1" />
+          <stop offset="1" stopColor="#4F46E5" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id={`${uid}-bar`} x1="12" y1="0" x2="36" y2="0">
+          <stop stopColor="#67E8F9" />
+          <stop offset="0.5" stopColor="#A78BFA" />
+          <stop offset="1" stopColor="#F0ABFC" />
+        </linearGradient>
+        <filter id={`${uid}-soft`} x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="1.4" result="b" />
+          <feMerge>
+            <feMergeNode in="b" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <rect x="4" y="4" width="40" height="40" rx="12" fill={`url(#${uid}-tile)`} />
+      <rect
+        x="4.75"
+        y="4.75"
+        width="38.5"
+        height="38.5"
+        rx="11.2"
+        fill="none"
+        stroke="url(#${uid}-bar)"
+        strokeOpacity="0.35"
+        strokeWidth="1"
+      />
+
+      {/* Soft AI core */}
+      <circle
+        cx="24"
+        cy="20"
+        r="9"
+        fill={`url(#${uid}-core)`}
+        filter={`url(#${uid}-soft)`}
+      />
+      <circle cx="24" cy="20" r="3.4" fill="#F8FAFC" />
+      <circle cx="22.6" cy="18.8" r="1.1" fill="#fff" opacity="0.85" />
+
+      {/* Double underscore — brand cue */}
+      <rect
+        x="13"
+        y="33"
+        width="9"
+        height="2.6"
+        rx="1.3"
+        fill={`url(#${uid}-bar)`}
+      />
+      <rect
+        x="26"
+        y="33"
+        width="9"
+        height="2.6"
+        rx="1.3"
+        fill={`url(#${uid}-bar)`}
+      />
+    </svg>
+  )
+}
+
+AiMark.propTypes = { size: PropTypes.number }
+
+/** Modern terminal mark — prompt + cursor */
+function TerminalMark({ size }) {
+  const uid = useId().replace(/:/g, '')
+  return (
+    <svg viewBox="0 0 48 48" width={size} height={size} aria-hidden>
+      <defs>
+        <linearGradient id={`${uid}-bg`} x1="6" y1="4" x2="42" y2="44">
+          <stop stopColor="#2D2D30" />
+          <stop offset="1" stopColor="#0C0C0C" />
+        </linearGradient>
+        <linearGradient id={`${uid}-glow`} x1="12" y1="16" x2="36" y2="34">
+          <stop stopColor="#3FB950" />
+          <stop offset="1" stopColor="#56D364" />
+        </linearGradient>
+      </defs>
+      <rect x="4" y="4" width="40" height="40" rx="10" fill={`url(#${uid}-bg)`} />
+      <rect
+        x="4"
+        y="4"
+        width="40"
+        height="40"
+        rx="10"
+        fill="none"
+        stroke="#3FB950"
+        strokeOpacity="0.22"
+        strokeWidth="1.25"
+      />
+      {/* chevron > */}
+      <path
+        d="M15 17.5 L23 24 L15 30.5"
+        fill="none"
+        stroke={`url(#${uid}-glow)`}
+        strokeWidth="3.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* underscore cursor */}
+      <rect x="26" y="28.5" width="10" height="3.2" rx="1.2" fill={`url(#${uid}-glow)`} />
+    </svg>
+  )
+}
+
+TerminalMark.propTypes = { size: PropTypes.number }
+
 /**
  * App icons — Fluent Color glyphs + reliable inline OS marks.
  * Globally rendered 2% smaller than requested (text elsewhere unchanged).
  */
 export function AppIcon({ id, size: sizeProp = 40, className }) {
   const size = Math.max(1, Math.round(sizeProp * 0.98))
+
+  if (id === 'ai') {
+    return (
+      <span
+        className={clsx(
+          'grid aspect-square place-items-center overflow-hidden rounded-[22%] shadow-md ring-1 ring-black/10',
+          className,
+        )}
+        style={{ width: size, height: size }}
+        aria-hidden
+      >
+        <AiMark size={size} />
+      </span>
+    )
+  }
+
+  if (id === 'terminal') {
+    return (
+      <span
+        className={clsx(
+          'grid aspect-square place-items-center overflow-hidden rounded-[22%] shadow-md ring-1 ring-black/10',
+          className,
+        )}
+        style={{ width: size, height: size }}
+        aria-hidden
+      >
+        <TerminalMark size={size} />
+      </span>
+    )
+  }
 
   if (id === 'about') {
     return (
@@ -206,11 +357,6 @@ const TILES = {
     Icon: Mail24Color,
     bg: 'linear-gradient(145deg, #DCEBFF 0%, #8EC8F6 100%)',
     colorIcon: true,
-  },
-  terminal: {
-    Icon: Prompt24Filled,
-    bg: 'linear-gradient(145deg, #3A3A3C 0%, #0C0C0C 100%)',
-    glyph: '#3FB950',
   },
   education: {
     Icon: HatGraduation24Filled,
