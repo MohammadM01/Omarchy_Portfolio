@@ -42,9 +42,14 @@ body,
   overflow: hidden;
 }
 
+/* A small, consistent accessibility boost for all window typography. */
+html {
+  font-size: 101%;
+}
+
 body {
   font-family: var(--font-sans);
-  font-size: 15.655px; /* +1% from 15.5px */
+  font-size: 1rem;
   background: #07080d;
   color: var(--color-win-text);
   -webkit-font-smoothing: antialiased;
