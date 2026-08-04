@@ -12,6 +12,7 @@ import {
   skills,
   badges,
 } from '../../data/portfolioData'
+import { AGENT_API_BASE } from '../../constants'
 
 function replyTo(raw) {
   const q = raw.toLowerCase().trim()
@@ -107,8 +108,14 @@ export function AiAgentWindow() {
   const inputRef = useRef(null)
 
   useEffect(() => {
-    // Fetch a new chat ID on mount
-    fetch('http://127.0.0.1:8000/new-chat')
+    // The hosted agent URL is supplied at build time. If it is not configured,
+    // the window continues with its built-in factual portfolio replies.
+    if (!AGENT_API_BASE) {
+      setChatId(crypto.randomUUID())
+      return undefined
+    }
+
+    fetch(`${AGENT_API_BASE}/new-chat`)
       .then((res) => res.json())
       .then((data) => setChatId(data.chat_id))
       .catch((err) => {
@@ -140,8 +147,10 @@ export function AiAgentWindow() {
     setMessages((m) => [...m, { id: streamingId, role: 'assistant', text: '' }])
 
     try {
+      if (!AGENT_API_BASE) throw new Error('Agent API is not configured')
+
       const response = await fetch(
-        `http://127.0.0.1:8000/chat?chat_id=${activeChatId}&question=${encodeURIComponent(trimmed)}`
+        `${AGENT_API_BASE}/chat?chat_id=${activeChatId}&question=${encodeURIComponent(trimmed)}`,
       )
 
       if (!response.ok) {
