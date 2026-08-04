@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-/** Live clock for the Win12 date pill */
+/** Live clock for the taskbar date pill */
 export function useClock() {
   const [now, setNow] = useState(() => new Date())
 

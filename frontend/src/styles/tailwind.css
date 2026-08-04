@@ -2,7 +2,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
 
-/* Win12 Fluent tokens — matched to lttthedev / tjy-gitnub demo */
+/* Fluent desktop tokens */
 @theme {
   --color-win-bg: #ffffff;
   --color-win-surface: rgba(250, 250, 250, 0.73);
@@ -20,8 +20,8 @@
   --color-win-hover: rgba(255, 255, 255, 0.4);
   --color-win-shadow: rgba(34, 34, 34, 0.19);
 
-  --font-sans: "Segoe UI", "IBM Plex Sans", system-ui, sans-serif;
-  --font-mono: "Cascadia Code", "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
 
   --radius-win: 10px;
   --radius-win-lg: 20px;
@@ -47,6 +47,15 @@ body {
   background: #07080d;
   color: var(--color-win-text);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Force sans everywhere (including former mono UI) */
+.font-mono,
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--font-sans) !important;
 }
 
 html[data-theme="light"] body {

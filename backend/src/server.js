@@ -99,7 +99,7 @@ function saveLocal(entry) {
 app.get('/api/health', (_req, res) => {
   res.json({
     ok: true,
-    service: 'win12-backend',
+    service: 'mohammad-portfolio-backend',
     mailConfigured: Boolean(transporter && process.env.CONTACT_TO_EMAIL),
     mailError: transporter ? null : mailError,
   })
@@ -165,7 +165,7 @@ app.use((err, _req, res, _next) => {
 })
 
 const server = app.listen(PORT, '127.0.0.1', () => {
-  console.log(`Win12 backend listening on http://127.0.0.1:${PORT}`)
+  console.log(`Mohammad's Portfolio backend listening on http://127.0.0.1:${PORT}`)
   if (!transporter) {
     console.warn(
       '[mail] SMTP not ready — contact form saves to backend/data/messages.json until SMTP_PASS is set.',

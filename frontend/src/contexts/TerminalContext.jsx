@@ -21,28 +21,27 @@ function nextId() {
   return lineId
 }
 
-const ASCII_BANNER = [
-  { type: 'accent', text: '  __  __       _                               _' },
-  { type: 'accent', text: ' |  \\/  | ___ | |__   __ _ _ __ ___  _ __ ___  __| |' },
-  { type: 'accent', text: " | |\\/| |/ _ \\| '_ \\ / _` | '_ ` _ \\| '_ ` _ \\/ _` |" },
-  { type: 'accent', text: ' | |  | | (_) | | | | (_| | | | | | | | | | | | (_| |' },
-  { type: 'accent', text: ' |_|  |_|\\___/|_| |_|\\__,_|_| |_| |_|_| |_| |_|\\__,_|' },
-  { type: 'dim', text: '' },
-  { type: 'plain', text: ' Mohammad Mulla · SDE · Windows 12 Desktop' },
-  { type: 'dim', text: ' Type `help` · try `about` or `projects`' },
+const WELCOME_BANNER = [
+  { type: 'title', text: "Mohammad's Portfolio" },
+  { type: 'plain', text: 'Mohammad Mulla · Software Development Engineer' },
+  {
+    type: 'dim',
+    text: 'Type help · try dir, cd Documents\\Portfolio, type about.txt',
+  },
   { type: 'dim', text: '' },
 ]
 
 function buildBootLines(showBanner) {
   const lines = showBanner
-    ? ASCII_BANNER.map((l) => ({ id: nextId(), ...l }))
+    ? WELCOME_BANNER.map((l) => ({ id: nextId(), ...l }))
     : [
-        { id: nextId(), type: 'dim', text: 'Windows 12 Terminal ready' },
+        { id: nextId(), type: 'title', text: "Mohammad's Portfolio" },
         {
           id: nextId(),
-          type: 'plain',
-          text: 'Type `help` for commands.',
+          type: 'dim',
+          text: 'Terminal ready · type help for commands',
         },
+        { id: nextId(), type: 'dim', text: '' },
       ]
   return lines
 }
@@ -55,7 +54,7 @@ export function TerminalProvider({ children }) {
     buildBootLines(!bannerShown.current),
   )
   const [commandHistory, setCommandHistory] = useState([])
-  const { openWindow } = useWindows()
+  const { openWindow, focusWindow } = useWindows()
   const { toggleTheme } = useTheme()
 
   const toggle = useCallback(() => setIsOpen((v) => !v), [])
@@ -70,11 +69,11 @@ export function TerminalProvider({ children }) {
   const clear = useCallback(() => setHistory([]), [])
 
   const run = useCallback(
-    (raw) => {
+    async (raw) => {
       const prompt = `PS ${cwd}> ${raw}`
       setCommandHistory((h) => [...h, raw])
 
-      const result = processCommand(raw, { cwd })
+      const result = await processCommand(raw, { cwd })
 
       if (result.clear) {
         setHistory([])
@@ -93,11 +92,21 @@ export function TerminalProvider({ children }) {
       setHistory((prev) => [...prev, ...out])
 
       if (result.cwd) setCwd(result.cwd)
-      if (result.openWindow) openWindow(result.openWindow)
       if (result.toggleTheme) toggleTheme()
-      if (result.exit) setIsOpen(false)
+      if (result.exit) {
+        setIsOpen(false)
+        return
+      }
+
+      if (result.openWindow) {
+        // Terminal overlays at z-80 — close it so the app window can take focus
+        setIsOpen(false)
+        openWindow(result.openWindow)
+        // Ensure focus after open (restores if minimized)
+        window.setTimeout(() => focusWindow(result.openWindow), 0)
+      }
     },
-    [cwd, openWindow, toggleTheme],
+    [cwd, openWindow, focusWindow, toggleTheme],
   )
 
   const value = useMemo(

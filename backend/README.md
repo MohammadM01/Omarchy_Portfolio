@@ -1,4 +1,4 @@
-# Windows 12 Portfolio API
+# Mohammad's Portfolio API
 
 Secure contact endpoint. Messages are emailed to your inbox. Destination address and SMTP secrets stay in `.env` only (never in the frontend).
 
