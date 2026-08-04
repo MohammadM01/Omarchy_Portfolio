@@ -103,6 +103,7 @@ export const projects = [
     period: 'Oct 2025 - Jan 2026',
     github: 'https://github.com/MohammadM01/Chain-Cred-final',
     demo: 'https://chaincred-frontend.onrender.com/',
+    image: '/projects/chaincred.png',
     description:
       'Designed and implemented a full-stack app with wallet auth, on-chain credentials, and a React dashboard. Reduced verification time from days to under 2 minutes. Built APIs, MongoDB models, OCR flow, and resume tooling.',
     tech: ['React', 'Node.js', 'MongoDB', 'Solidity', 'opBNB', 'REST'],
