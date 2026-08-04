@@ -11,7 +11,7 @@ const root = join(__dirname, '..')
 const dist = join(root, 'dist')
 const pub = join(root, 'public')
 
-const SITE = 'https://portfolio-chi-steel-82.vercel.app'
+const SITE = 'https://mohammadmulla.com'
 const results = { pass: [], fail: [], warn: [], info: [] }
 
 function pass(msg) {
