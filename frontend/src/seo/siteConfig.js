@@ -105,6 +105,46 @@ export const FAQ_ITEMS = [
     question: 'Is Mohammad Mulla open to work?',
     answer: profile.availability,
   },
+  {
+    question: 'What programming languages does Mohammad Mulla use?',
+    answer:
+      'Mohammad Mulla works with Java, Python, C++, JavaScript, and SQL, selecting tools based on the product and system requirements.',
+  },
+  {
+    question: 'Does Mohammad Mulla have a resume?',
+    answer:
+      'Yes. Mohammad Mulla’s current resume is available to download from this portfolio.',
+  },
+  {
+    question: 'What is CryptGuard?',
+    answer:
+      'CryptGuard is Mohammad Mulla’s encrypted-traffic analysis project, built with C++ and Python for high-throughput threat detection without decryption.',
+  },
+  {
+    question: 'What is ChainCred?',
+    answer:
+      'ChainCred is a full-stack credential-verification platform by Mohammad Mulla that uses wallet authentication and verifiable on-chain credentials.',
+  },
+  {
+    question: 'What is Civic Eye?',
+    answer:
+      'Civic Eye is Mohammad Mulla’s civic issue reporting platform with GPS tagging and YOLOv8-based image classification.',
+  },
+  {
+    question: 'Does Mohammad Mulla work with AI?',
+    answer:
+      'Yes. Mohammad Mulla has worked with machine learning, RAG, LangChain, LangGraph, and YOLOv8-based computer vision.',
+  },
+  {
+    question: 'Has Mohammad Mulla received hackathon recognition?',
+    answer:
+      'Yes. Mohammad Mulla was a national-level hackathon runner-up, earned a BNB Hackathon honorable mention, and won an internal Smart India Hackathon selection.',
+  },
+  {
+    question: 'How can I hire or contact Mohammad Mulla?',
+    answer:
+      'Contact Mohammad Mulla through the portfolio contact form, email, LinkedIn, or GitHub for software engineering opportunities and collaborations.',
+  },
 ]
 
 export function absoluteUrl(path = '/') {
