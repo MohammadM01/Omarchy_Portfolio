@@ -41,7 +41,7 @@ export async function sendContactEmail(transporter, payload) {
   const safeEmail = escapeHtml(email)
   const safeMessage = escapeHtml(message).replaceAll('\n', '<br />')
 
-  const subject = `Portfolio contact from ${name}`.slice(0, 140)
+  const subject = `Message from ${name}`.slice(0, 140)
 
   await transporter.sendMail({
     from: `"${fromName}" <${fromUser}>`,

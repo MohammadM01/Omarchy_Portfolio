@@ -26,12 +26,14 @@ export function DesktopBackground() {
         <span className="desktop-glow desktop-glow--2" />
         <span className="desktop-glow desktop-glow--3" />
 
-        <div className="desktop-hero">
-          <div className="desktop-hero__grid">
-            <span className="desktop-tile desktop-tile--tl" />
-            <span className="desktop-tile desktop-tile--tr" />
-            <span className="desktop-tile desktop-tile--bl" />
-            <span className="desktop-tile desktop-tile--br" />
+        <div className="desktop-hero select-none">
+          <div className="flex flex-col items-center justify-center text-center gap-2.5 font-display px-4">
+            <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.65)]">
+              Hey, I m Mohammad!
+            </h1>
+            <p className="text-3xl md:text-5xl font-bold tracking-tight text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
+              Welcome to my Portfolio
+            </p>
           </div>
         </div>
       </motion.div>

@@ -12,6 +12,7 @@ import { ContactWindow } from '../windows/ContactWindow'
 import { PersonalizeWindow } from '../windows/PersonalizeWindow'
 import { ThisPCWindow } from '../windows/ThisPCWindow'
 import { EdgeWindow } from '../windows/EdgeWindow'
+import { AiAgentWindow } from '../windows/AiAgentWindow'
 import { Terminal } from '../terminal/Terminal'
 import { projects } from '../../data/portfolioData'
 import { useWindows } from '../../contexts/WindowContext'
@@ -111,6 +112,7 @@ export function Workspace({ onOpenApp, editMode, refreshKey, onExitEdit }) {
         <PersonalizeWindow />
         <ThisPCWindow />
         <EdgeWindow />
+        <AiAgentWindow />
       </div>
 
       <Terminal />

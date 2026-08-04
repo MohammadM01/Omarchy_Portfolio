@@ -25,6 +25,11 @@ export function useKeyboardShortcuts({ onOpenStart }) {
         closeActive()
         return
       }
+      if (meta && e.key === '0') {
+        e.preventDefault()
+        openWindow('ai')
+        return
+      }
       if (meta && e.key >= '1' && e.key <= '9') {
         const map = [
           'about',

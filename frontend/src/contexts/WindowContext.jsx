@@ -54,38 +54,23 @@ export const DEFAULT_WINDOW_SIZES = {
   personalize: { width: 660, height: 760 },
   'this-pc': { width: 820, height: 640 },
   edge: { width: 660, height: 540 },
+  ai: { width: 420, height: 580 },
 }
 
-const DEFAULT_WINDOWS = {
-  welcome: {
-    open: true,
-    minimized: false,
-    maximized: false,
-    zIndex: 10,
-    ...centerPosition(WELCOME_W, WELCOME_H),
-  },
-}
+const DEFAULT_WINDOWS = {}
 
 function loadInitial() {
   // Recenter on every fresh load so windows never spawn off-screen / at 0,0
   if (typeof window !== 'undefined') {
     return {
-      windows: {
-        welcome: {
-          open: true,
-          minimized: false,
-          maximized: false,
-          zIndex: 10,
-          ...centerPosition(WELCOME_W, WELCOME_H),
-        },
-      },
-      activeId: 'welcome',
+      windows: {},
+      activeId: null,
       nextZ: 11,
     }
   }
   return {
     windows: { ...DEFAULT_WINDOWS },
-    activeId: 'welcome',
+    activeId: null,
     nextZ: 11,
   }
 }
