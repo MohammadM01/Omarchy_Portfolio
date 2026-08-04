@@ -41,3 +41,24 @@ Never put your normal Gmail password in `.env`. Never commit `.env`.
 
 Set `VITE_API_URL` if the API is not proxied / not on localhost:8787.
 Vite already proxies `/api` to `:8787` in local dev.
+
+## Deploy the mail API on Vercel
+
+Deploy this `backend` folder as a separate Vercel project. The Vercel function
+is available at `POST /api/contact` and sends mail directly; it does not use
+the local JSON inbox because Vercel functions have no persistent disk.
+
+Add these Vercel environment variables to the mail project:
+
+```text
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=your-gmail-address@gmail.com
+SMTP_PASS=your-16-character-Google-App-Password
+CONTACT_TO_EMAIL=your-gmail-address@gmail.com
+ALLOWED_ORIGINS=https://mohammadmulla.com,https://www.mohammadmulla.com
+```
+
+Then add `VITE_API_URL=https://your-mail-project.vercel.app` to the frontend
+project's production environment variables and redeploy the frontend.
