@@ -2,17 +2,16 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import PropTypes from 'prop-types'
 import { profile } from '../../data/portfolioData'
+import { WinLogo } from '../ui/WinLogo'
 
 const STATUS = [
-  'Initializing workspace…',
+  'Starting Windows…',
   'Loading profile…',
-  'Mounting projects…',
+  'Preparing desktop…',
   'Almost ready…',
 ]
 
-/**
- * Clean circular boot — violet → rose ring.
- */
+/** Windows 12–style boot splash */
 export function BootScreen({ onDone, hold = false }) {
   const [progress, setProgress] = useState(0)
   const [visible, setVisible] = useState(true)
@@ -31,7 +30,7 @@ export function BootScreen({ onDone, hold = false }) {
     const reduced =
       typeof window !== 'undefined' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const duration = reduced ? 800 : 3200
+    const duration = reduced ? 800 : 2800
     const start = performance.now()
     let raf
     const freezeAt = hold ? 62 : 100
@@ -74,110 +73,55 @@ export function BootScreen({ onDone, hold = false }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hold, onDone])
 
-  const size = 168
-  const stroke = 3.5
-  const r = (size - stroke) / 2
-  const c = 2 * Math.PI * r
-  const offset = c - (progress / 100) * c
-
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[100] overflow-hidden bg-[#07050c]"
-          exit={{ opacity: 0, scale: 1.02 }}
+          className="fixed inset-0 z-[100] overflow-hidden bg-[#0b1a2e]"
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           role="dialog"
-          aria-label="Loading Omarchy"
+          aria-label="Loading Windows"
           aria-busy={progress < 100}
         >
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-1/2 top-[38%] h-[55vmin] w-[55vmin] -translate-x-1/2 -translate-y-1/2 rounded-full bg-omarchy-accent/15 blur-[90px]" />
-            <div className="absolute left-[62%] top-[58%] h-[40vmin] w-[40vmin] -translate-x-1/2 -translate-y-1/2 rounded-full bg-omarchy-rose/18 blur-[80px]" />
-            <div className="omarchy-noise opacity-[0.06]" />
+            <div className="absolute left-1/2 top-[40%] h-[50vmin] w-[50vmin] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0078D4]/25 blur-[100px]" />
+            <div className="absolute left-[70%] top-[70%] h-[35vmin] w-[35vmin] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E3008C]/15 blur-[80px]" />
           </div>
 
           <div className="relative z-10 flex h-full flex-col items-center justify-center px-6">
-            <div className="relative mb-8">
-              <svg
-                width={size}
-                height={size}
-                viewBox={`0 0 ${size} ${size}`}
-                className="-rotate-90"
-                aria-hidden
-              >
-                <defs>
-                  <linearGradient id="bootRing" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="var(--color-omarchy-accent)" />
-                    <stop offset="100%" stopColor="var(--color-omarchy-rose)" />
-                  </linearGradient>
-                </defs>
-                <circle
-                  cx={size / 2}
-                  cy={size / 2}
-                  r={r}
-                  fill="none"
-                  stroke="rgba(255,255,255,0.06)"
-                  strokeWidth={stroke}
-                />
-                <circle
-                  cx={size / 2}
-                  cy={size / 2}
-                  r={r}
-                  fill="none"
-                  stroke="url(#bootRing)"
-                  strokeWidth={stroke}
-                  strokeLinecap="round"
-                  strokeDasharray={c}
-                  strokeDashoffset={offset}
-                  style={{ transition: 'stroke-dashoffset 60ms linear' }}
-                />
-              </svg>
-
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="font-mono text-2xl font-bold tracking-widest text-omarchy-text">
-                  {profile.monogram}
-                </span>
-                <span className="mt-1 font-mono text-[10px] tabular-nums text-omarchy-rose">
-                  {String(progress).padStart(3, '0')}%
-                </span>
-              </div>
-            </div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="omarchy-gradient-text mb-2 font-mono text-sm font-semibold tracking-[0.35em]"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="mb-8"
             >
-              OMARCHY
-            </motion.p>
+              <WinLogo className="h-24 w-24" glow />
+            </motion.div>
 
-            <p className="mb-1 font-mono text-xs text-omarchy-dim sm:text-sm">
+            <p className="mb-1 text-lg font-semibold tracking-wide text-white">
               {profile.name}
             </p>
-            <p className="mb-8 max-w-xs text-center font-mono text-[11px] text-omarchy-muted">
-              {profile.title}
-            </p>
+            <p className="mb-10 text-sm text-white/60">{profile.title}</p>
+
+            <div className="h-1 w-48 overflow-hidden rounded-full bg-white/10">
+              <div
+                className="h-full rounded-full bg-[#60cdff] transition-[width] duration-75"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
 
             <p
-              className="min-h-[1.25rem] font-mono text-[11px] text-omarchy-accent"
+              className="mt-4 min-h-[1.25rem] text-xs text-white/50"
               aria-live="polite"
             >
               {STATUS[statusIdx]}
             </p>
 
-            <div className="mt-4 h-[2px] w-40 overflow-hidden bg-white/5">
-              <div
-                className="omarchy-gradient-bar h-full transition-[width] duration-75"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-
             {!hold && (
               <button
                 type="button"
                 onClick={finish}
-                className="mt-10 font-mono text-[10px] uppercase tracking-[0.2em] text-omarchy-muted transition-colors hover:text-omarchy-rose"
+                className="mt-10 text-[10px] uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-white/80"
               >
                 Skip · Enter
               </button>

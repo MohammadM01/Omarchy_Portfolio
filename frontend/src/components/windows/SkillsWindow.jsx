@@ -3,18 +3,18 @@ import { skills } from '../../data/portfolioData'
 
 export function SkillsWindow() {
   return (
-    <Window id="skills" title="skills.md" width={560}>
+    <Window id="skills" title="Skills" width={660}>
       <div className="space-y-5">
         {Object.entries(skills).map(([category, items]) => (
           <section key={category}>
-            <h3 className="mb-2 font-mono text-[11px] uppercase tracking-[0.16em] text-omarchy-accent">
+            <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#5C2D91]">
               {category}
             </h3>
             <div className="flex flex-wrap gap-2">
               {items.map((skill) => (
                 <span
                   key={skill}
-                  className="border border-omarchy-accent/35 bg-omarchy-bg px-2.5 py-1 font-mono text-xs text-omarchy-text transition-colors duration-200 hover:border-omarchy-rose hover:text-omarchy-rose"
+                  className="rounded-lg border border-[#5C2D91]/35 bg-win-bg px-2.5 py-1 text-xs text-win-text transition-colors duration-200 hover:border-[#5C2D91] hover:text-[#5C2D91]"
                 >
                   {skill}
                 </span>

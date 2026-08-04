@@ -20,8 +20,14 @@ export function ToastProvider({ children }) {
 
   const push = useCallback(
     (message, tone = 'info', ttl = 2800) => {
-      const id = ++toastId
-      setToasts((t) => [...t, { id, message, tone }])
+      let id
+      setToasts((t) => {
+        // Dedupe identical visible toasts (StrictMode / double fire)
+        if (t.some((x) => x.message === message)) return t
+        id = ++toastId
+        return [...t, { id, message, tone }]
+      })
+      if (id == null) return null
       window.setTimeout(() => dismiss(id), ttl)
       return id
     },

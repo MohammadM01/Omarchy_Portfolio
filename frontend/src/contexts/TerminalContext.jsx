@@ -9,6 +9,7 @@ import {
 import PropTypes from 'prop-types'
 import { processCommand } from '../utils/terminalCommands'
 import { useWindows } from './WindowContext'
+import { useTheme } from './ThemeContext'
 import { storageGet, storageSet } from '../utils/storage'
 import { STORAGE_KEYS } from '../constants'
 
@@ -27,8 +28,8 @@ const ASCII_BANNER = [
   { type: 'accent', text: ' | |  | | (_) | | | | (_| | | | | | | | | | | | (_| |' },
   { type: 'accent', text: ' |_|  |_|\\___/|_| |_|\\__,_|_| |_| |_|_| |_| |_|\\__,_|' },
   { type: 'dim', text: '' },
-  { type: 'plain', text: ' Mohammad Mulla · Full-Stack & AI · Omarchy Desktop' },
-  { type: 'dim', text: ' Type `help` · try `./mohammad_mulla --profile --full`' },
+  { type: 'plain', text: ' Mohammad Mulla · SDE · Windows 12 Desktop' },
+  { type: 'dim', text: ' Type `help` · try `about` or `projects`' },
   { type: 'dim', text: '' },
 ]
 
@@ -36,11 +37,11 @@ function buildBootLines(showBanner) {
   const lines = showBanner
     ? ASCII_BANNER.map((l) => ({ id: nextId(), ...l }))
     : [
-        { id: nextId(), type: 'dim', text: 'Omarchy Kernel 1.0.0 — tty1' },
+        { id: nextId(), type: 'dim', text: 'Windows 12 Terminal ready' },
         {
           id: nextId(),
           type: 'plain',
-          text: 'Type `help` · try `./mohammad_mulla --profile --full`.',
+          text: 'Type `help` for commands.',
         },
       ]
   return lines
@@ -49,12 +50,13 @@ function buildBootLines(showBanner) {
 export function TerminalProvider({ children }) {
   const bannerShown = useRef(storageGet(STORAGE_KEYS.termBanner, false))
   const [isOpen, setIsOpen] = useState(false)
-  const [cwd, setCwd] = useState('~')
+  const [cwd, setCwd] = useState('C:\\Users\\Mohammad')
   const [history, setHistory] = useState(() =>
     buildBootLines(!bannerShown.current),
   )
   const [commandHistory, setCommandHistory] = useState([])
   const { openWindow } = useWindows()
+  const { toggleTheme } = useTheme()
 
   const toggle = useCallback(() => setIsOpen((v) => !v), [])
   const open = useCallback(() => {
@@ -69,7 +71,7 @@ export function TerminalProvider({ children }) {
 
   const run = useCallback(
     (raw) => {
-      const prompt = `mohammad@omarchy:${cwd}$ ${raw}`
+      const prompt = `PS ${cwd}> ${raw}`
       setCommandHistory((h) => [...h, raw])
 
       const result = processCommand(raw, { cwd })
@@ -92,9 +94,10 @@ export function TerminalProvider({ children }) {
 
       if (result.cwd) setCwd(result.cwd)
       if (result.openWindow) openWindow(result.openWindow)
+      if (result.toggleTheme) toggleTheme()
       if (result.exit) setIsOpen(false)
     },
-    [cwd, openWindow],
+    [cwd, openWindow, toggleTheme],
   )
 
   const value = useMemo(

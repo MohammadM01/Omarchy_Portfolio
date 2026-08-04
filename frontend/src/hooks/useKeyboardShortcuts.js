@@ -3,16 +3,16 @@ import PropTypes from 'prop-types'
 import { useTerminal } from '../contexts/TerminalContext'
 import { useWindows } from '../contexts/WindowContext'
 
-export function useKeyboardShortcuts({ onOpenPalette }) {
+export function useKeyboardShortcuts({ onOpenStart }) {
   const { toggle, isOpen, close } = useTerminal()
-  const { closeActive } = useWindows()
+  const { closeActive, openWindow } = useWindows()
 
   useEffect(() => {
     const onKey = (e) => {
       const meta = e.ctrlKey || e.metaKey
       if (meta && (e.key === 'k' || e.key === 'K')) {
         e.preventDefault()
-        onOpenPalette?.()
+        onOpenStart?.()
         return
       }
       if (meta && (e.key === '`' || e.code === 'Backquote')) {
@@ -25,18 +25,36 @@ export function useKeyboardShortcuts({ onOpenPalette }) {
         closeActive()
         return
       }
+      if (meta && e.key >= '1' && e.key <= '9') {
+        const map = [
+          'about',
+          'experience',
+          'skills',
+          'projects',
+          'achievements',
+          'education',
+          'github',
+          'contact',
+          'terminal',
+        ]
+        const id = map[Number(e.key) - 1]
+        if (!id) return
+        e.preventDefault()
+        if (id === 'terminal') toggle()
+        else openWindow(id)
+      }
       if (e.key === 'Escape' && isOpen) close()
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [toggle, closeActive, isOpen, close, onOpenPalette])
+  }, [toggle, closeActive, isOpen, close, onOpenStart, openWindow])
 }
 
-export function KeyboardShortcuts({ onOpenPalette }) {
-  useKeyboardShortcuts({ onOpenPalette })
+export function KeyboardShortcuts({ onOpenStart }) {
+  useKeyboardShortcuts({ onOpenStart })
   return null
 }
 
 KeyboardShortcuts.propTypes = {
-  onOpenPalette: PropTypes.func,
+  onOpenStart: PropTypes.func,
 }

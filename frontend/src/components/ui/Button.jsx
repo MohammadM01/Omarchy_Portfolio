@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
-/**
- * Accent-aware button used across windows and the dock.
- */
 export function Button({
   children,
   variant = 'ghost',
@@ -18,18 +15,18 @@ export function Button({
       type={type}
       disabled={disabled}
       className={clsx(
-        'font-mono transition-colors duration-200 outline-none focus-visible:ring-1 focus-visible:ring-omarchy-accent disabled:cursor-not-allowed disabled:opacity-50',
-        size === 'sm' && 'px-2 py-1 text-xs',
-        size === 'md' && 'px-3 py-1.5 text-sm',
+        'rounded-lg font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-win-accent disabled:cursor-not-allowed disabled:opacity-50',
+        size === 'sm' && 'px-2.5 py-1 text-xs',
+        size === 'md' && 'px-3.5 py-1.5 text-sm',
         size === 'lg' && 'px-4 py-2 text-sm',
         variant === 'ghost' &&
-          'bg-transparent text-omarchy-dim hover:bg-omarchy-panel hover:text-omarchy-text',
+          'bg-transparent text-win-dim hover:bg-black/5 hover:text-win-text dark:hover:bg-white/10',
         variant === 'accent' &&
-          'bg-omarchy-accent text-[#12081a] hover:bg-omarchy-rose hover:text-[#12081a]',
+          'bg-win-accent text-white hover:brightness-110',
         variant === 'outline' &&
-          'border border-omarchy-border text-omarchy-text hover:border-omarchy-accent hover:text-omarchy-accent',
+          'border border-win-border text-win-text hover:border-win-accent hover:text-win-accent',
         variant === 'danger' &&
-          'text-omarchy-danger hover:bg-omarchy-danger/10',
+          'text-win-danger hover:bg-win-danger/10',
         className,
       )}
       {...props}

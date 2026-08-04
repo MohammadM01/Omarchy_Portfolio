@@ -1,4 +1,4 @@
-const PREFIX = 'omarchy:'
+const PREFIX = 'win12:'
 
 export function storageGet(key, fallback = null) {
   try {

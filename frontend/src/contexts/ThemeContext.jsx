@@ -7,84 +7,86 @@ import {
   useState,
 } from 'react'
 import PropTypes from 'prop-types'
-import { themePresets } from '../data/portfolioData'
 import { storageGet, storageSet } from '../utils/storage'
 import { STORAGE_KEYS } from '../constants'
+import { WALLPAPERS, wallpaperSrc } from '../data/wallpapers'
 
 const ThemeContext = createContext(null)
 
-function applyPreset(preset, mode) {
+function applyTheme(theme) {
   const root = document.documentElement
-  const isLight = mode === 'light'
-  const accent = isLight ? preset.lightAccent : preset.accent
-  const accentDim = isLight ? preset.lightAccentDim : preset.accentDim
-  const rose = isLight ? preset.lightRose || preset.rose : preset.rose
-  const roseDim = isLight ? preset.lightRoseDim || preset.roseDim : preset.roseDim
+  root.setAttribute('data-theme', theme)
+  root.classList.toggle('dark', theme === 'dark')
+  root.style.colorScheme = theme
+}
 
-  root.style.setProperty('--color-omarchy-accent', accent)
-  root.style.setProperty('--color-omarchy-accent-dim', accentDim)
-  root.style.setProperty('--color-omarchy-accent-glow', preset.glow)
-  root.style.setProperty('--color-omarchy-rose', rose)
-  root.style.setProperty('--color-omarchy-rose-dim', roseDim)
-  root.style.setProperty(
-    '--color-omarchy-rose-glow',
-    preset.roseGlow || 'rgba(255, 107, 157, 0.45)',
-  )
-  root.style.setProperty(
-    '--color-omarchy-rose-soft',
-    `color-mix(in srgb, ${rose} 16%, transparent)`,
-  )
+function normalizeWallpaper(id) {
+  return WALLPAPERS.some((w) => w.id === id) ? id : WALLPAPERS[0].id
 }
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => storageGet(STORAGE_KEYS.theme, 'dark'))
-  const [presetId, setPresetId] = useState(() => {
-    const saved = storageGet(STORAGE_KEYS.preset, 'violet-rose')
-    if (saved === 'violet' || saved === 'cyan') return 'violet-rose'
-    return saved
+  const [theme, setThemeState] = useState(() => {
+    const saved = storageGet(STORAGE_KEYS.theme, 'dark')
+    return saved === 'light' ? 'light' : 'dark'
   })
-  const [soundEnabled, setSoundEnabled] = useState(() =>
-    storageGet(STORAGE_KEYS.sound, false),
+  const [wallpaperId, setWallpaperIdState] = useState(() =>
+    normalizeWallpaper(storageGet(STORAGE_KEYS.wallpaper, 'classic')),
   )
 
-  const preset = themePresets.find((p) => p.id === presetId) || themePresets[0]
-
   useEffect(() => {
-    applyPreset(preset, theme)
+    applyTheme(theme)
     storageSet(STORAGE_KEYS.theme, theme)
-    storageSet(STORAGE_KEYS.preset, presetId)
-  }, [preset, presetId, theme])
+  }, [theme])
 
   useEffect(() => {
-    storageSet(STORAGE_KEYS.sound, soundEnabled)
-  }, [soundEnabled])
+    storageSet(STORAGE_KEYS.wallpaper, wallpaperId)
+  }, [wallpaperId])
+
+  const setTheme = useCallback((next) => {
+    setThemeState(next)
+  }, [])
+
+  const toggleTheme = useCallback(() => {
+    setThemeState((t) => {
+      const next = t === 'dark' ? 'light' : 'dark'
+      applyTheme(next)
+      storageSet(STORAGE_KEYS.theme, next)
+      return next
+    })
+  }, [])
+
+  const setWallpaper = useCallback((id) => {
+    setWallpaperIdState(normalizeWallpaper(id))
+  }, [])
+
+  const wallpaperUrl = useMemo(
+    () => wallpaperSrc(wallpaperId, theme),
+    [wallpaperId, theme],
+  )
 
   const value = useMemo(
     () => ({
       theme,
       isDark: theme === 'dark',
-      presetId,
-      preset,
-      soundEnabled,
       setTheme,
-      setPresetId,
-      toggleTheme: () => setTheme((t) => (t === 'dark' ? 'light' : 'dark')),
-      toggleSound: () => setSoundEnabled((s) => !s),
-      setSoundEnabled,
+      toggleTheme,
+      wallpaperId,
+      setWallpaper,
+      wallpaperUrl,
+      wallpapers: WALLPAPERS,
     }),
-    [theme, presetId, preset, soundEnabled],
+    [
+      theme,
+      setTheme,
+      toggleTheme,
+      wallpaperId,
+      setWallpaper,
+      wallpaperUrl,
+    ],
   )
 
   return (
-    <ThemeContext.Provider value={value}>
-      <div
-        className={`h-full min-h-0 w-full ${theme === 'light' ? 'omarchy-light' : 'omarchy-dark'}`}
-        data-theme={theme}
-        data-preset={presetId}
-      >
-        {children}
-      </div>
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   )
 }
 
@@ -96,16 +98,4 @@ export function useTheme() {
   const ctx = useContext(ThemeContext)
   if (!ctx) throw new Error('useTheme must be used within ThemeProvider')
   return ctx
-}
-
-export function useSound() {
-  const { soundEnabled } = useTheme()
-  const play = useCallback(
-    (name) => {
-      if (!soundEnabled) return
-      import('../utils/sounds').then((m) => m.sounds[name]?.())
-    },
-    [soundEnabled],
-  )
-  return { play, soundEnabled }
 }

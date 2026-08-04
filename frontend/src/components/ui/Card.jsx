@@ -18,10 +18,10 @@ export function Card({ children, className, onClick }) {
           : undefined
       }
       className={clsx(
-        'border border-omarchy-border bg-omarchy-panel/80 transition-colors duration-200',
+        'rounded-xl border border-win-border bg-win-panel/80 transition-colors duration-200',
         !/\bp-/.test(className || '') && 'p-4',
         onClick &&
-          'cursor-pointer hover:border-omarchy-accent/60 hover:bg-omarchy-panel focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-omarchy-accent',
+          'cursor-pointer hover:border-win-accent/60 hover:bg-win-panel focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-win-accent',
         className,
       )}
     >

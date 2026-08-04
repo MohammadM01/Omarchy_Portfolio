@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-/** Live clock for the menu bar */
+/** Live clock for the Win12 date pill */
 export function useClock() {
   const [now, setNow] = useState(() => new Date())
 
@@ -9,14 +9,13 @@ export function useClock() {
     return () => window.clearInterval(id)
   }, [])
 
-  const time = now.toLocaleTimeString([], {
+  const time = now.toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',
-    second: '2-digit',
-    hour12: false,
+    hour12: true,
   })
 
-  const date = now.toLocaleDateString([], {
+  const date = now.toLocaleDateString('en-US', {
     weekday: 'short',
     month: 'short',
     day: 'numeric',

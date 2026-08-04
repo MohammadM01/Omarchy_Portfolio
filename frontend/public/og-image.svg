@@ -1,10 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
-  <rect width="1200" height="630" fill="#09060f"/>
-  <rect x="48" y="48" width="1104" height="534" stroke="#c4b5fd" stroke-opacity="0.45" stroke-width="2"/>
-  <circle cx="980" cy="480" r="140" fill="#ff6b9d" fill-opacity="0.16"/>
-  <circle cx="220" cy="200" r="160" fill="#a78bfa" fill-opacity="0.12"/>
-  <text x="100" y="220" fill="#ff6b9d" font-family="monospace" font-size="28" letter-spacing="8">OMARCHY</text>
-  <text x="100" y="320" fill="#f4eef8" font-family="monospace" font-size="56" font-weight="700">Mohammad Mulla</text>
-  <text x="100" y="380" fill="#c4b5fd" font-family="monospace" font-size="28">Software Engineer · Full-Stack &amp; AI</text>
-  <text x="100" y="480" fill="#ff6b9d" font-family="monospace" font-size="20">SIH 1st · National Runner-up · BNB Honorable Mention</text>
+  <rect width="1200" height="630" fill="#07080d"/>
+  <defs>
+    <linearGradient id="tl" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#6EC3F4"/><stop offset="1" stop-color="#8B7CF6"/>
+    </linearGradient>
+    <linearGradient id="tr" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F472B6"/><stop offset="1" stop-color="#FB7185"/>
+    </linearGradient>
+    <linearGradient id="bl" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#3B82F6"/><stop offset="1" stop-color="#A855F7"/>
+    </linearGradient>
+    <linearGradient id="br" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#E879F9"/><stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+  <!-- Big official-style square Windows mark -->
+  <g transform="translate(120,165)">
+    <rect x="0" y="0" width="140" height="140" rx="12" fill="url(#tl)"/>
+    <rect x="156" y="0" width="140" height="140" rx="12" fill="url(#tr)"/>
+    <rect x="0" y="156" width="140" height="140" rx="12" fill="url(#bl)"/>
+    <rect x="156" y="156" width="140" height="140" rx="12" fill="url(#br)"/>
+  </g>
+  <text x="520" y="270" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="52" font-weight="700">Mohammad Mulla</text>
+  <text x="520" y="330" fill="#a5b4fc" font-family="Segoe UI, Arial, sans-serif" font-size="28">Software Development Engineer</text>
+  <text x="520" y="400" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="22">Open to SDE roles · Mumbai / Remote</text>
 </svg>

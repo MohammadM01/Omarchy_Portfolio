@@ -1,33 +1,41 @@
 /**
- * Portfolio data — Mohammad Mulla
- * Single source of truth for all UI + terminal content.
+ * Portfolio data - Mohammad Mulla
+ * Positioning: Software Development Engineer (SDE)
  */
 
 export const profile = {
   name: 'Mohammad Mulla',
-  title: 'Software Engineer (Full-Stack & AI)',
+  title: 'Software Development Engineer',
   phone: '+91-8983228237',
   email: 'mullamohammad123@gmail.com',
   location: 'Bhiwandi, Mumbai, India',
   linkedin: 'linkedin.com/in/mohammadm01',
   linkedinUrl: 'https://linkedin.com/in/mohammadm01',
-  github: 'github.com/MohammadMo1',
-  githubUrl: 'https://github.com/MohammadMo1',
-  githubUser: 'MohammadMo1',
+  github: 'github.com/MohammadM01',
+  githubUrl: 'https://github.com/MohammadM01',
+  githubUser: 'MohammadM01',
   resumeUrl: '/Resume.pdf',
-  availability: 'Open to Full-Stack / AI roles · Mumbai / Remote',
+  photoUrl: '/about_pic/img.png',
+  availability: 'Actively looking for SDE roles. Mumbai or Remote.',
   monogram: 'MM',
-  tagline: 'Full-stack & AI engineer. Hackathon-proven systems.',
+  tagline: 'Welcome to my Portfolio. Clean code. Sharp systems. Ready to ship.',
   summaryShort:
-    'Full-stack & AI engineer with national hackathon wins and a global BNB Honorable Mention. Builds scalable apps in Java, React, Node, and modern LLM stacks.',
+    'Software Development Engineer with solid DSA and system design fundamentals. Experience building production-style apps in Java, React, Node.js, and SQL. National hackathon recognition and a global BNB Honorable Mention.',
   summary:
-    'Software Engineer specializing in full-stack development and AI-powered systems, recognized with top rankings in national hackathons and an Honorable Mention at the global BNB Hackathon. Experienced in designing scalable applications using Java, React.js, Node.js, SQL, and modern AI technologies, with strong foundations in data structures, algorithms, and system design.',
+    'Software Development Engineer with hands-on experience across backend, frontend, and databases. Comfortable with Java, C++, Python, JavaScript, SQL, React, Node.js, and Docker. Strong DSA practice and system design interest. Delivered projects involving high-throughput processing, REST APIs, and scalable web apps. Recognized in national hackathons and globally at the BNB Hackathon.',
 }
 
 export const badges = [
-  { id: 'sih', short: 'SIH 1st', label: '1st · Smart India Hackathon Internal' },
-  { id: 'national', short: 'National Runner-up', label: '1st Runner-Up · National Hackathon' },
-  { id: 'bnb', short: 'BNB Mention', label: 'Honorable Mention · BNB Hackathon (Global)' },
+  {
+    id: 'national',
+    short: '1st Runner-Up · National Level Hackathon',
+    label: '1st Runner-Up · National Level Hackathon',
+  },
+  {
+    id: 'bnb',
+    short: 'Honorable Mention at BNB Hackathon (Global)',
+    label: 'Honorable Mention at BNB Hackathon (Global)',
+  },
 ]
 
 export const experience = [
@@ -36,25 +44,19 @@ export const experience = [
     role: 'Software Developer Intern',
     company: 'DataMatex Technologies',
     location: 'Bhiwandi',
-    period: 'Dec 2025 – Mar 2026',
+    period: 'Dec 2025 - Mar 2026',
     bullets: [
-      'Developed responsive websites for 3+ local businesses, improving online visibility and customer engagement by 18% through modern UI/UX and mobile optimization.',
-      'Implemented performance and SEO improvements that reduced page load time by 25% and increased inquiry form submissions by 12%.',
+      'Developed and shipped responsive web apps for 3+ clients using modern frontend practices, improving engagement by ~18%.',
+      'Optimized page performance and SEO, reducing load time by ~25% and increasing form submissions by ~12%.',
     ],
   },
 ]
 
 export const skills = {
   Languages: ['Java', 'Python', 'C++', 'JavaScript', 'SQL'],
-  'Frameworks & Libraries': [
-    'React.js',
-    'Next.js',
-    'Node.js',
-    'Express.js',
-    'FastAPI',
-    'Tailwind CSS',
-  ],
-  'AI / LLM': ['RAG', 'RAG Pipelines', 'LangChain', 'LangGraph'],
+  'Core CS': ['Data Structures', 'Algorithms', 'OOP', 'System Design basics'],
+  'Backend & APIs': ['Node.js', 'Express.js', 'FastAPI', 'REST APIs'],
+  Frontend: ['React.js', 'Next.js', 'Tailwind CSS'],
   'Databases & Tools': [
     'MySQL',
     'PostgreSQL',
@@ -65,13 +67,14 @@ export const skills = {
     'Postman',
     'Linux',
   ],
+  'Also worked with': ['RAG', 'LangChain', 'LangGraph'],
 }
 
 export const education = {
   degree: 'B.Tech in Computer Engineering',
   school: 'Shivajirao S. Jondhale College of Engineering',
   location: 'Dombivli, India',
-  period: 'Nov 2022 – May 2026',
+  period: 'Nov 2022 - May 2026',
   cgpa: '7.5/10',
 }
 
@@ -79,14 +82,14 @@ export const projects = [
   {
     id: 'cryptguard',
     name: 'CryptGuard',
-    subtitle: 'Privacy-Preserving Encrypted Traffic Threat Detection System',
-    period: 'Feb 2026 – Mar 2026',
-    github: 'https://github.com/MohammadMo1/CryptGuard',
+    subtitle: 'High-throughput encrypted traffic analysis engine',
+    period: 'Feb 2026 - Mar 2026',
+    github: 'https://github.com/ShifaKhan21/CryptGuard',
     demo: null,
-    image: '/projects/cryptguard.svg',
+    image: '/projects/cryptguard.png',
     description:
-      'Multi-threaded DPI engine for encrypted traffic analysis achieving 22K+ flows/sec at 0.044 ms latency via a zero-decryption pipeline. Hybrid threat detection (rules + AbuseIPDB + Random Forest on CICIDS 160K) with 99% accuracy, detecting C2 beaconing.',
-    tech: ['C++', 'Python', 'DPI', 'ML', 'TLS/JA3'],
+      'Built a multi-threaded DPI pipeline in C++/Python for encrypted traffic. Processed 22K+ flows/sec at 0.044 ms latency without decryption. Combined rules, threat intel, and ML (Random Forest on CICIDS) for ~99% detection accuracy.',
+    tech: ['C++', 'Python', 'Multithreading', 'ML', 'TLS/JA3'],
     metrics: [
       { label: 'flows/sec', value: '22K+' },
       { label: 'latency', value: '0.044ms' },
@@ -96,14 +99,13 @@ export const projects = [
   {
     id: 'chaincred',
     name: 'ChainCred',
-    subtitle: 'Decentralized Verifiable Credential Platform',
-    period: 'Oct 2025 – Jan 2026',
-    github: 'https://github.com/MohammadMo1/ChainCred',
-    demo: null,
-    image: '/projects/chaincred.svg',
+    subtitle: 'Full-stack credential verification platform',
+    period: 'Oct 2025 - Jan 2026',
+    github: 'https://github.com/MohammadM01/Chain-Cred-final',
+    demo: 'https://chaincred-frontend.onrender.com/',
     description:
-      'DeSoc dApp with EVM wallet login; on-chain verifiable credentials cut verification time from days to under 2 minutes. Dashboard and resume builder with OCR scanning and AI-driven networking.',
-    tech: ['React', 'Node.js', 'MongoDB', 'Solidity', 'opBNB', 'BNB Greenfield'],
+      'Designed and implemented a full-stack app with wallet auth, on-chain credentials, and a React dashboard. Reduced verification time from days to under 2 minutes. Built APIs, MongoDB models, OCR flow, and resume tooling.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Solidity', 'opBNB', 'REST'],
     metrics: [
       { label: 'verify time', value: '<2 min' },
       { label: 'stack', value: 'opBNB' },
@@ -113,21 +115,20 @@ export const projects = [
   {
     id: 'civic-eye',
     name: 'Civic Eye',
-    subtitle: 'Unified Civic Issue Reporting & Resolution Platform',
-    period: 'Jul 2025 – Aug 2025',
-    github: 'https://github.com/MohammadMo1/CivicEye',
+    subtitle: 'End-to-end civic issue reporting system (SIH 2025)',
+    period: 'Jul 2025 - Aug 2025',
+    github: 'https://github.com/MohammadM01/civic',
     demo: 'https://civic-eye.onrender.com',
-    image: '/projects/civic-eye.svg',
+    image: '/projects/civic-eye.png',
     description:
-      'AI civic-reporting platform (SIH 2025) auto-routing GPS-tagged issues via YOLOv8 categorization. Blockchain audit trails, contractor bidding, and gamification; demo deployed on Render.',
+      'Shipped a full-stack reporting platform with React frontend, Node/Express APIs, GPS tagging, and YOLOv8-based issue classification (~92% accuracy). Added audit trails and contractor workflows. Deployed demo on Render.',
     tech: [
       'React',
       'Node.js',
       'Express',
       'YOLOv8',
-      'Blockchain',
-      'Google Translate API',
       'REST APIs',
+      'MongoDB',
     ],
     metrics: [
       { label: 'vision acc.', value: '92%' },
@@ -140,80 +141,52 @@ export const projects = [
 export const achievements = [
   {
     id: 'sih',
-    title: '1st Position, Smart India Hackathon Internal',
+    title: '1st Place, Smart India Hackathon (Internal)',
     detail:
-      'Built Civic Eye (Python, OpenCV) with 92% accuracy, outperforming 30+ teams.',
+      'Led development of Civic Eye. Vision pipeline hit 92% accuracy; placed 1st among 30+ teams.',
   },
   {
     id: 'national',
     title: '1st Runner-Up, National-Level Hackathon',
     detail:
-      'Built CryptGuard DPI engine, achieving 22K+ flows/sec at 99% accuracy threat detection.',
+      'Built CryptGuard: 22K+ flows/sec throughput and ~99% threat detection accuracy.',
   },
   {
     id: 'bnb',
-    title: 'Honorable Mention (Global Level), BNB Hackathon',
+    title: 'Honorable Mention, BNB Hackathon (Global)',
     detail:
-      'Recognized globally for ChainCred, a decentralized verifiable credential platform.',
+      'Recognized for ChainCred, a full-stack verifiable credential system on opBNB.',
   },
 ]
 
-export const themePresets = [
-  {
-    id: 'violet-rose',
-    label: 'Violet Rose',
-    accent: '#c4b5fd',
-    accentDim: '#a78bfa',
-    glow: 'rgba(196, 181, 253, 0.4)',
-    rose: '#ff6b9d',
-    roseDim: '#f43f5e',
-    roseGlow: 'rgba(255, 107, 157, 0.45)',
-    lightAccent: '#7c3aed',
-    lightAccentDim: '#6d28d9',
-    lightRose: '#e11d48',
-    lightRoseDim: '#be123c',
-  },
-  {
-    id: 'rose',
-    label: 'Rose',
-    accent: '#ff6b9d',
-    accentDim: '#f43f5e',
-    glow: 'rgba(255, 107, 157, 0.45)',
-    rose: '#c4b5fd',
-    roseDim: '#a78bfa',
-    roseGlow: 'rgba(196, 181, 253, 0.35)',
-    lightAccent: '#e11d48',
-    lightAccentDim: '#be123c',
-    lightRose: '#7c3aed',
-    lightRoseDim: '#6d28d9',
-  },
-  {
-    id: 'mono',
-    label: 'Mono',
-    accent: '#e8e0ef',
-    accentDim: '#b6a8c4',
-    glow: 'rgba(232, 224, 239, 0.28)',
-    rose: '#ff8fab',
-    roseDim: '#fb7185',
-    roseGlow: 'rgba(255, 143, 171, 0.3)',
-    lightAccent: '#1c1228',
-    lightAccentDim: '#3f3354',
-    lightRose: '#be123c',
-    lightRoseDim: '#9f1239',
-  },
-]
+/** Window accent colours (Fluent / Win12) */
+export const WINDOW_ACCENTS = {
+  welcome: '#0078D4',
+  about: '#0078D4',
+  experience: '#107C10',
+  skills: '#5C2D91',
+  projects: '#008080',
+  education: '#8764B8',
+  achievements: '#FF8C00',
+  github: '#24292F',
+  contact: '#E3008C',
+  terminal: '#1A1A1A',
+  personalize: '#0078D4',
+  'this-pc': '#0078D4',
+  settings: '#6B6B6B',
+  edge: '#0078D4',
+  feedback: '#8764B8',
+}
 
-export const commandPaletteItems = [
-  { id: 'welcome', label: 'Welcome', hint: 'session', action: 'window' },
-  { id: 'about', label: 'About', hint: 'profile', action: 'window' },
-  { id: 'projects', label: 'Projects', hint: 'portfolio', action: 'window' },
-  { id: 'experience', label: 'Experience', hint: 'work', action: 'window' },
-  { id: 'skills', label: 'Skills', hint: 'stack', action: 'window' },
-  { id: 'education', label: 'Education', hint: 'degree', action: 'window' },
-  { id: 'achievements', label: 'Achievements', hint: 'awards', action: 'window' },
-  { id: 'github', label: 'GitHub Activity', hint: 'commits', action: 'window' },
-  { id: 'contact', label: 'Contact', hint: 'message', action: 'window' },
-  { id: 'terminal', label: 'Terminal', hint: 'Ctrl+`', action: 'terminal' },
-  { id: 'resume', label: 'Download Resume', hint: 'PDF', action: 'resume' },
-  { id: 'boot', label: 'Replay Boot Intro', hint: 'kernel', action: 'boot' },
+/** Taskbar / Start pinned apps */
+export const APPS = [
+  { id: 'about', label: 'About Me', accent: WINDOW_ACCENTS.about, shortcut: '1' },
+  { id: 'experience', label: 'Experience', accent: WINDOW_ACCENTS.experience, shortcut: '2' },
+  { id: 'skills', label: 'Skills', accent: WINDOW_ACCENTS.skills, shortcut: '3' },
+  { id: 'projects', label: 'Projects', accent: WINDOW_ACCENTS.projects, shortcut: '4' },
+  { id: 'achievements', label: 'Achievements', accent: WINDOW_ACCENTS.achievements, shortcut: '5' },
+  { id: 'education', label: 'Education', accent: WINDOW_ACCENTS.education, shortcut: '6' },
+  { id: 'github', label: 'GitHub', accent: WINDOW_ACCENTS.github, shortcut: '7' },
+  { id: 'contact', label: 'Contact', accent: WINDOW_ACCENTS.contact, shortcut: '8' },
+  { id: 'terminal', label: 'Terminal', accent: WINDOW_ACCENTS.terminal, shortcut: '9', kind: 'terminal' },
 ]
