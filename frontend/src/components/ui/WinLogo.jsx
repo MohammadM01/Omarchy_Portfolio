@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
 /**
- * Classic 4-pane Start mark (not win-logo.svg — that file is boot-only).
+ * Classic 4-pane Start mark (legacy solid colors).
  */
 export function StartMark({ className = 'h-8 w-8' }) {
   return (
@@ -25,12 +25,16 @@ StartMark.propTypes = {
 }
 
 /**
- * Start / chrome mark. Does not load /win-logo.svg (reserved for boot screen).
+ * Gradient mark from /win-logo.svg (Start, welcome chrome, etc.).
  */
 export function WinLogo({ className = 'h-5 w-5', glow = true }) {
   return (
-    <StartMark
-      className={clsx(glow && 'win-logo-glow', 'aspect-square', className)}
+    <img
+      src="/win-logo.svg"
+      alt=""
+      draggable={false}
+      aria-hidden
+      className={clsx(glow && 'win-logo-glow', 'aspect-square object-contain', className)}
     />
   )
 }

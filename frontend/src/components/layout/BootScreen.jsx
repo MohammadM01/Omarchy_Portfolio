@@ -4,13 +4,13 @@ import PropTypes from 'prop-types'
 import { profile } from '../../data/portfolioData'
 
 const STATUS = [
-  'Starting Windows…',
+  'Starting Mohammad\'s Portfolio…',
   'Loading profile…',
   'Preparing desktop…',
   'Almost ready…',
 ]
 
-/** Four panes of /win-logo.svg assemble from corners (file used only here). */
+/** Four panes of /win-logo.svg assemble from corners */
 const PANES = [
   { id: 'tl', left: 0, top: 0, ox: -1, oy: -1 },
   { id: 'tr', left: 0.5, top: 0, ox: 1, oy: -1 },
@@ -108,7 +108,7 @@ BootWinLogo.propTypes = {
   size: PropTypes.number,
 }
 
-/** Boot screen — win-logo.svg mark only (assembled panes) */
+/** Boot screen — win-logo.svg mark (assembled panes) */
 export function BootScreen({ onDone, hold = false }) {
   const reduced = useReducedMotion()
   const [progress, setProgress] = useState(0)
@@ -184,7 +184,7 @@ export function BootScreen({ onDone, hold = false }) {
       {visible && (
         <motion.div
           className="boot-screen fixed inset-0 z-[100] overflow-hidden"
-          initial={{ opacity: 0 }}
+          initial={false}
           animate={{ opacity: 1 }}
           exit={{
             opacity: 0,
@@ -193,7 +193,7 @@ export function BootScreen({ onDone, hold = false }) {
           }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           role="dialog"
-          aria-label="Loading Windows"
+          aria-label="Loading Mohammad's Portfolio"
           aria-busy={progress < 100}
         >
           <div className="absolute inset-0 bg-[#05070d]" />

@@ -60,7 +60,7 @@ export function Terminal() {
     <motion.div
       ref={nodeRef}
       role="dialog"
-      aria-label="Windows Terminal"
+      aria-label="Mohammad's Portfolio Terminal"
       initial={{ opacity: 0, y: 18, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 14, scale: 0.97 }}
@@ -106,7 +106,7 @@ export function Terminal() {
         onSubmit={onSubmit}
         className="flex shrink-0 items-center gap-2 border-t border-white/10 bg-[#0c0c0c] px-3 py-2.5"
       >
-        <span className="shrink-0 font-mono text-[12px] text-[#6ccb5f] md:text-[13px]">
+        <span className="shrink-0 font-sans text-[13px] font-medium text-[#6ccb5f] md:text-[14px]">
           PS {cwd}&gt;
         </span>
         <input
@@ -118,7 +118,7 @@ export function Terminal() {
           autoCapitalize="off"
           autoComplete="off"
           autoCorrect="off"
-          className="min-w-0 flex-1 bg-transparent font-mono text-[12px] text-white outline-none md:text-[13px]"
+          className="min-w-0 flex-1 bg-transparent font-sans text-[13px] text-white outline-none md:text-[14px]"
           aria-label="Terminal input"
         />
         <span className="h-4 w-2 shrink-0 animate-pulse bg-white/80" />

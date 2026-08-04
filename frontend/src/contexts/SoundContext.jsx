@@ -10,7 +10,7 @@ import { sounds } from '../utils/sounds'
 import { storageGet, storageSet } from '../utils/storage'
 
 const SoundContext = createContext(null)
-const SOUND_KEY = 'win12_sound'
+const SOUND_KEY = 'mohammad_portfolio_sound'
 
 export function SoundProvider({ children }) {
   const [enabled, setEnabled] = useState(() => storageGet(SOUND_KEY, true))

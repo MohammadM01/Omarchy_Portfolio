@@ -1,4 +1,4 @@
-const PREFIX = 'win12:'
+const PREFIX = 'mohammad_portfolio:'
 
 export function storageGet(key, fallback = null) {
   try {

@@ -159,7 +159,7 @@ export const achievements = [
   },
 ]
 
-/** Window accent colours (Fluent / Win12) */
+/** Window accent colours (Fluent) */
 export const WINDOW_ACCENTS = {
   welcome: '#0078D4',
   about: '#0078D4',

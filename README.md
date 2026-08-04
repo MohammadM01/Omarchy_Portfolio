@@ -1,11 +1,11 @@
-# Windows 12 Portfolio
+# Mohammad's Portfolio
 
-Personal portfolio for **Mohammad Mulla**, styled as a Windows 12 Fluent desktop.
+Personal portfolio for **Mohammad Mulla**, presented as a Fluent-style desktop.
 
 ## Structure
 
 ```
-Win12_Portfolio/
+Omarchy_Portfolio/
 ├── frontend/     # React + Vite + Tailwind
 ├── backend/      # Express contact API
 ├── Resume.pdf
@@ -31,7 +31,7 @@ npm run dev
 
 ## Features
 
-- Windows 12 desktop (taskbar, Start menu, acrylic windows)
+- Desktop shell (taskbar, Start menu, acrylic windows)
 - Colorful per-app window accents
 - Light / dark Fluent themes
 - Desktop icons + right-click context menu

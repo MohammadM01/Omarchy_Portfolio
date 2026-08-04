@@ -222,7 +222,7 @@ export function QuickSettingsTrigger() {
           setOpen((v) => !v)
         }}
         className={clsx(
-          'grid h-[39px] w-[39px] place-items-center rounded-2xl text-win-text transition-colors',
+          'grid h-[44px] w-[44px] place-items-center rounded-2xl text-win-text transition-colors',
           open
             ? 'bg-black/[0.1] dark:bg-white/15'
             : 'hover:bg-black/[0.06] dark:hover:bg-white/[0.08]',

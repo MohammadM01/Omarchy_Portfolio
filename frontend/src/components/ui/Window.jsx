@@ -41,7 +41,7 @@ ResizeHandles.propTypes = {
   onResizeStart: PropTypes.func.isRequired,
 }
 
-/** Win12 mica window — centered, draggable, resizable. */
+/** Mica-style window — centered, draggable, resizable. */
 export function Window({
   id,
   title,

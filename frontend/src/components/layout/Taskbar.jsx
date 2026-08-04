@@ -31,7 +31,7 @@ function TaskbarButton({ app, active, minimized, onClick }) {
       whileTap={reduced ? undefined : { scale: 0.92 }}
       transition={springs.tap}
       className={clsx(
-        'group relative flex h-[43px] w-[43px] shrink-0 items-center justify-center rounded-2xl transition-colors duration-150',
+        'group relative flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-2xl transition-colors duration-150',
         active
           ? 'bg-white/15 dark:bg-white/12'
           : 'hover:bg-black/[0.06] dark:hover:bg-white/[0.08]',
@@ -43,7 +43,7 @@ function TaskbarButton({ app, active, minimized, onClick }) {
           active && 'task-bounce',
         )}
       >
-        <AppIcon id={app.id} size={32} />
+        <AppIcon id={app.id} size={34} />
       </span>
       <span
         className={clsx(
@@ -108,7 +108,7 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
       >
         <div
           className={clsx(
-            'pointer-events-auto flex max-w-full origin-bottom items-center gap-0.5 rounded-[21px] px-[7px] py-[5px]',
+            'pointer-events-auto flex origin-bottom items-center gap-1 rounded-[24px] px-2.5 py-2',
             'border border-white/20 dark:border-white/10',
             'bg-white/55 dark:bg-[#1c1c1e]/72',
             'shadow-[0_8px_32px_rgba(0,0,0,0.28),0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.35)]',
@@ -128,13 +128,13 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
             whileTap={{ scale: 0.92 }}
             transition={springs.tap}
             className={clsx(
-              'grid h-[43px] w-[43px] shrink-0 place-items-center rounded-2xl transition-colors duration-200',
+              'grid h-[48px] w-[48px] shrink-0 place-items-center rounded-2xl transition-colors duration-200',
               startOpen
                 ? 'bg-white/25 dark:bg-white/15'
                 : 'hover:bg-black/[0.06] dark:hover:bg-white/[0.08]',
             )}
           >
-            <WinLogo className="h-[31px] w-[31px]" glow />
+            <WinLogo className="h-[34px] w-[34px]" glow />
           </motion.button>
 
           {!isMobile && (
@@ -145,16 +145,16 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
                 play('click')
                 setStartOpen(true)
               }}
-              className="mx-0.5 flex h-[35px] w-[137px] shrink-0 items-center gap-2 rounded-full bg-black/[0.06] px-3 text-xs text-win-muted transition-colors hover:bg-black/[0.1] dark:bg-white/[0.08] dark:hover:bg-white/[0.12] sm:w-[165px]"
+              className="mx-0.5 flex h-[40px] w-[150px] shrink-0 items-center gap-2 rounded-full bg-black/[0.06] px-3.5 text-xs text-win-muted transition-colors hover:bg-black/[0.1] dark:bg-white/[0.08] dark:hover:bg-white/[0.12] sm:w-[180px]"
             >
-              <Search className="h-[13px] w-[13px] shrink-0" />
+              <Search className="h-[14px] w-[14px] shrink-0" />
               <span className="truncate">Search</span>
             </button>
           )}
 
-          <div className="mx-1 hidden h-7 w-px bg-black/10 dark:bg-white/10 sm:block" />
+          <div className="mx-1 hidden h-8 w-px shrink-0 bg-black/10 dark:bg-white/10 sm:block" />
 
-          <nav className="flex items-center gap-0.5 overflow-x-auto">
+          <nav className="flex shrink-0 items-center gap-0.5">
             {apps.map((app) => {
               const win = windows[app.id]
               const active =
@@ -174,9 +174,9 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
             })}
           </nav>
 
-          <div className="mx-1 h-7 w-px bg-black/10 dark:bg-white/10" />
+          <div className="mx-1 h-8 w-px shrink-0 bg-black/10 dark:bg-white/10" />
 
-          <div className="flex items-center gap-0.5">
+          <div className="flex shrink-0 items-center gap-0.5">
             <motion.button
               type="button"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
@@ -187,7 +187,7 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
               }}
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.92 }}
-              className="grid h-[39px] w-[39px] place-items-center rounded-2xl text-win-text transition-colors duration-200 hover:bg-black/[0.06] hover:text-win-accent dark:hover:bg-white/[0.08]"
+              className="grid h-[44px] w-[44px] place-items-center rounded-2xl text-win-text transition-colors duration-200 hover:bg-black/[0.06] hover:text-win-accent dark:hover:bg-white/[0.08]"
             >
               <motion.span
                 key={isDark ? 'sun' : 'moon'}
@@ -197,9 +197,9 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
                 className="grid place-items-center"
               >
                 {isDark ? (
-                  <Sun className="h-[15px] w-[15px]" />
+                  <Sun className="h-[16px] w-[16px]" />
                 ) : (
-                  <Moon className="h-[15px] w-[15px]" />
+                  <Moon className="h-[16px] w-[16px]" />
                 )}
               </motion.span>
             </motion.button>
@@ -211,9 +211,9 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
                 play('open')
                 openWindow('about')
               }}
-              className="ml-0.5 grid h-[39px] w-[39px] place-items-center rounded-2xl transition-transform hover:scale-105"
+              className="ml-0.5 grid h-[44px] w-[44px] place-items-center rounded-2xl transition-transform hover:scale-105"
             >
-              <ProfilePhoto size="sm" className="!h-[31px] !w-[31px]" />
+              <ProfilePhoto size="sm" className="!h-[34px] !w-[34px]" />
             </button>
           </div>
 

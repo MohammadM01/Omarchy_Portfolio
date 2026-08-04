@@ -1,13 +1,18 @@
-export const BOOT_STORAGE_KEY = 'win12_booted'
+/** Site brand */
+export const BRAND_NAME = "Mohammad's Portfolio"
+export const HOST_NAME = "Mohammad's Portfolio"
+export const USER_DOMAIN = 'PORTFOLIO'
+
+export const BOOT_STORAGE_KEY = 'mohammad_portfolio_booted'
 
 export const STORAGE_KEYS = {
-  theme: 'win12_theme',
-  wallpaper: 'win12_wallpaper',
-  windows: 'win12_windows_v2',
-  termBanner: 'win12_termBanner',
+  theme: 'mohammad_portfolio_theme',
+  wallpaper: 'mohammad_portfolio_wallpaper',
+  windows: 'mohammad_portfolio_windows_v3',
+  termBanner: 'mohammad_portfolio_termBanner_v2',
   boot: BOOT_STORAGE_KEY,
-  desktopIcons: 'win12_desktop_icons_v6',
-  brightness: 'win12_brightness',
+  desktopIcons: 'mohammad_portfolio_desktop_icons_v7',
+  brightness: 'mohammad_portfolio_brightness',
 }
 
 export const PORTFOLIO_REPO_URL =
