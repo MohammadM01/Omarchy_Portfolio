@@ -19,5 +19,6 @@ export const PORTFOLIO_REPO_URL =
   'https://github.com/MohammadM01/Omarchy_Portfolio'
 
 export const API_BASE = import.meta.env.VITE_API_URL || ''
+export const AGENT_API_BASE = (import.meta.env.VITE_AGENT_API_URL || '').replace(/\/$/, '')
 
 export const MOBILE_TASKBAR_IDS = ['terminal', 'ai']
