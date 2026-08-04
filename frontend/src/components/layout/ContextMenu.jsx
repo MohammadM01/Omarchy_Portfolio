@@ -52,10 +52,10 @@ export function ContextMenu({ x, y, open, onClose, onAction, editMode }) {
       {open && (
         <motion.ul
           role="menu"
-          initial={{ opacity: 0, scale: 0.96, y: 4 }}
+          initial={{ opacity: 0, scale: 0.92, y: 6 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.96, y: 4 }}
-          transition={{ duration: 0.14 }}
+          exit={{ opacity: 0, scale: 0.94, y: 4 }}
+          transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
           className="win-acrylic fixed z-[90] min-w-[248px] overflow-hidden rounded-[12px] border border-[var(--color-win-border)] py-1.5 text-[13px] shadow-[0_8px_28px_rgba(0,0,0,0.28)]"
           style={{ left: x, top: y }}
           onClick={(e) => e.stopPropagation()}

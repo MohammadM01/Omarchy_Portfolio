@@ -78,8 +78,11 @@ ThisPCMark.propTypes = { size: PropTypes.number }
 
 /**
  * App icons — Fluent Color glyphs + reliable inline OS marks.
+ * Globally rendered 2% smaller than requested (text elsewhere unchanged).
  */
-export function AppIcon({ id, size = 40, className }) {
+export function AppIcon({ id, size: sizeProp = 40, className }) {
+  const size = Math.max(1, Math.round(sizeProp * 0.98))
+
   if (id === 'about') {
     return (
       <span

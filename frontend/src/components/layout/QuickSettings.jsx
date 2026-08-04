@@ -222,13 +222,13 @@ export function QuickSettingsTrigger() {
           setOpen((v) => !v)
         }}
         className={clsx(
-          'grid h-10 w-10 place-items-center rounded-2xl text-win-text transition-colors',
+          'grid h-[39px] w-[39px] place-items-center rounded-2xl text-win-text transition-colors',
           open
             ? 'bg-black/[0.1] dark:bg-white/15'
             : 'hover:bg-black/[0.06] dark:hover:bg-white/[0.08]',
         )}
       >
-        <MoreHorizontal className="h-5 w-5" strokeWidth={2.25} />
+        <MoreHorizontal className="h-[19px] w-[19px]" strokeWidth={2.25} />
       </button>
       <QuickSettings
         open={open}

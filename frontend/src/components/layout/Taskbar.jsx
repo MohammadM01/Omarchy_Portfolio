@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
+import { motion } from 'framer-motion'
 import { Sun, Moon, Search } from 'lucide-react'
 import { APPS } from '../../data/portfolioData'
 import { MOBILE_TASKBAR_IDS } from '../../constants'
@@ -15,17 +16,22 @@ import { AppIcon } from '../ui/AppIcon'
 import { ProfilePhoto } from '../ui/ProfilePhoto'
 import { StartMenu } from './StartMenu'
 import { QuickSettingsTrigger } from './QuickSettings'
+import { useMotionPrefs, springs } from '../../utils/motion'
 
 function TaskbarButton({ app, active, minimized, onClick }) {
+  const { reduced } = useMotionPrefs()
   return (
-    <button
+    <motion.button
       type="button"
       title={app.label}
       aria-label={app.label}
       aria-pressed={active}
       onClick={onClick}
+      whileHover={reduced ? undefined : { scale: 1.06, y: -1 }}
+      whileTap={reduced ? undefined : { scale: 0.92 }}
+      transition={springs.tap}
       className={clsx(
-        'group relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl transition-all duration-200',
+        'group relative flex h-[43px] w-[43px] shrink-0 items-center justify-center rounded-2xl transition-colors duration-150',
         active
           ? 'bg-white/15 dark:bg-white/12'
           : 'hover:bg-black/[0.06] dark:hover:bg-white/[0.08]',
@@ -33,7 +39,7 @@ function TaskbarButton({ app, active, minimized, onClick }) {
     >
       <span
         className={clsx(
-          'transition-transform duration-200 group-hover:scale-105 group-active:scale-90',
+          'transition-transform duration-200',
           active && 'task-bounce',
         )}
       >
@@ -49,7 +55,7 @@ function TaskbarButton({ app, active, minimized, onClick }) {
               : 'w-0 bg-white/30 group-hover:w-3',
         )}
       />
-    </button>
+    </motion.button>
   )
 }
 
@@ -102,7 +108,7 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
       >
         <div
           className={clsx(
-            'pointer-events-auto flex max-w-full origin-bottom scale-[1.01] items-center gap-1 rounded-[22px] px-2 py-1.5',
+            'pointer-events-auto flex max-w-full origin-bottom items-center gap-0.5 rounded-[21px] px-[7px] py-[5px]',
             'border border-white/20 dark:border-white/10',
             'bg-white/55 dark:bg-[#1c1c1e]/72',
             'shadow-[0_8px_32px_rgba(0,0,0,0.28),0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.35)]',
@@ -110,7 +116,7 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
             'transition-[background,box-shadow] duration-300',
           )}
         >
-          <button
+          <motion.button
             type="button"
             aria-label="Start"
             aria-expanded={startOpen}
@@ -118,15 +124,18 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
               play('click')
               setStartOpen((v) => !v)
             }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.92 }}
+            transition={springs.tap}
             className={clsx(
-              'grid h-11 w-11 shrink-0 place-items-center rounded-2xl transition-all duration-200',
+              'grid h-[43px] w-[43px] shrink-0 place-items-center rounded-2xl transition-colors duration-200',
               startOpen
                 ? 'bg-white/25 dark:bg-white/15'
                 : 'hover:bg-black/[0.06] dark:hover:bg-white/[0.08]',
             )}
           >
-            <WinLogo className="h-8 w-8" glow />
-          </button>
+            <WinLogo className="h-[31px] w-[31px]" glow />
+          </motion.button>
 
           {!isMobile && (
             <button
@@ -136,9 +145,9 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
                 play('click')
                 setStartOpen(true)
               }}
-              className="mx-0.5 flex h-9 w-[140px] shrink-0 items-center gap-2 rounded-full bg-black/[0.06] px-3 text-xs text-win-muted transition-colors hover:bg-black/[0.1] dark:bg-white/[0.08] dark:hover:bg-white/[0.12] sm:w-[168px]"
+              className="mx-0.5 flex h-[35px] w-[137px] shrink-0 items-center gap-2 rounded-full bg-black/[0.06] px-3 text-xs text-win-muted transition-colors hover:bg-black/[0.1] dark:bg-white/[0.08] dark:hover:bg-white/[0.12] sm:w-[165px]"
             >
-              <Search className="h-3.5 w-3.5 shrink-0" />
+              <Search className="h-[13px] w-[13px] shrink-0" />
               <span className="truncate">Search</span>
             </button>
           )}
@@ -168,7 +177,7 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
           <div className="mx-1 h-7 w-px bg-black/10 dark:bg-white/10" />
 
           <div className="flex items-center gap-0.5">
-            <button
+            <motion.button
               type="button"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
               title={isDark ? 'Light mode' : 'Dark mode'}
@@ -176,14 +185,24 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
                 toggleTheme()
                 play('click')
               }}
-              className="grid h-10 w-10 place-items-center rounded-2xl text-win-text transition-all duration-300 hover:bg-black/[0.06] hover:text-win-accent dark:hover:bg-white/[0.08]"
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.92 }}
+              className="grid h-[39px] w-[39px] place-items-center rounded-2xl text-win-text transition-colors duration-200 hover:bg-black/[0.06] hover:text-win-accent dark:hover:bg-white/[0.08]"
             >
-              {isDark ? (
-                <Sun className="h-4 w-4 transition-transform duration-300" />
-              ) : (
-                <Moon className="h-4 w-4 transition-transform duration-300" />
-              )}
-            </button>
+              <motion.span
+                key={isDark ? 'sun' : 'moon'}
+                initial={{ rotate: -90, opacity: 0, scale: 0.7 }}
+                animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                transition={springs.snappy}
+                className="grid place-items-center"
+              >
+                {isDark ? (
+                  <Sun className="h-[15px] w-[15px]" />
+                ) : (
+                  <Moon className="h-[15px] w-[15px]" />
+                )}
+              </motion.span>
+            </motion.button>
             <QuickSettingsTrigger />
             <button
               type="button"
@@ -192,9 +211,9 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
                 play('open')
                 openWindow('about')
               }}
-              className="ml-0.5 grid h-10 w-10 place-items-center rounded-2xl transition-transform hover:scale-105"
+              className="ml-0.5 grid h-[39px] w-[39px] place-items-center rounded-2xl transition-transform hover:scale-105"
             >
-              <ProfilePhoto size="sm" className="!h-8 !w-8" />
+              <ProfilePhoto size="sm" className="!h-[31px] !w-[31px]" />
             </button>
           </div>
 
