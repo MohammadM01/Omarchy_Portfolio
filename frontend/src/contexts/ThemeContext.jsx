@@ -39,6 +39,13 @@ export function ThemeProvider({ children }) {
   }, [theme])
 
   useEffect(() => {
+    const id = window.requestAnimationFrame(() => {
+      document.documentElement.classList.add('theme-ready')
+    })
+    return () => window.cancelAnimationFrame(id)
+  }, [])
+
+  useEffect(() => {
     storageSet(STORAGE_KEYS.wallpaper, wallpaperId)
   }, [wallpaperId])
 

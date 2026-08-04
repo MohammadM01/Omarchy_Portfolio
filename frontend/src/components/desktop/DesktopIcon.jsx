@@ -65,7 +65,7 @@ export function DesktopIcon({
         if (window.matchMedia('(max-width: 768px)').matches) onOpen?.(id)
       }}
       className={clsx(
-        'group flex w-[88px] flex-col items-center gap-1.5 rounded-lg px-1 py-1.5 text-center transition-colors',
+        'group flex w-[86px] flex-col items-center gap-1.5 rounded-lg px-1 py-1.5 text-center',
         editMode
           ? 'cursor-grab bg-white/10 ring-1 ring-white/25 active:cursor-grabbing'
           : 'hover:bg-white/10',

@@ -64,7 +64,7 @@ export function Terminal() {
       initial={{ opacity: 0, y: 18, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 14, scale: 0.97 }}
-      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ type: 'spring', stiffness: 340, damping: 28, mass: 0.85 }}
       className="relative z-10 flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0c0c]/96 shadow-[0_24px_80px_rgba(0,0,0,0.55)] backdrop-blur-md md:h-[min(68vh,540px)] md:w-[min(92vw,720px)]"
       onClick={() => inputRef.current?.focus()}
     >

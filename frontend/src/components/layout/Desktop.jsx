@@ -25,7 +25,6 @@ export function Desktop({ onReplayBoot }) {
 
   useEffect(() => {
     play('boot')
-    // StrictMode runs effects twice in dev — only toast once
     if (readyToastSent.current) return
     readyToastSent.current = true
     push('Desktop ready. Press Ctrl+K to search.', 'accent', 3200)

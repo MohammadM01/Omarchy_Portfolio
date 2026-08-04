@@ -8,6 +8,11 @@ import { useIsMobile } from '../../hooks/useMediaQuery'
 import { WindowTitleBar } from './WindowControls'
 import { WINDOW_ACCENTS } from '../../data/portfolioData'
 import { AppIcon } from './AppIcon'
+import {
+  useMotionPrefs,
+  windowOpen,
+  windowOpenReduced,
+} from '../../utils/motion'
 
 const MIN_W = 360
 const MIN_H = 260
@@ -49,6 +54,7 @@ export function Window({
 }) {
   const nodeRef = useRef(null)
   const isMobile = useIsMobile()
+  const { windowTransition, reduced } = useMotionPrefs()
   const {
     windows,
     activeId,
@@ -69,6 +75,7 @@ export function Window({
   const color = accent || WINDOW_ACCENTS[id] || '#3b91d8'
   const w = isWelcome ? 580 : win?.width || defaultWidth
   const h = win?.height || defaultHeight
+  const openAnim = reduced ? windowOpenReduced : windowOpen
 
   const onResizeStart = useCallback(
     (e, dir) => {
@@ -117,15 +124,13 @@ export function Window({
     [focusWindow, id, resizeWindow, win, w, h, isWelcome],
   )
 
-  if (!isVisible || !win) return null
-
   const shellClass = clsx(
-    'pointer-events-auto flex flex-col overflow-hidden transition-[box-shadow,background] duration-200',
+    'pointer-events-auto flex flex-col overflow-hidden win-window-shell',
     isWelcome
       ? 'welcome-shell rounded-xl'
       : clsx(
           'border border-[var(--color-win-border)]',
-          win.maximized ? 'rounded-none' : 'rounded-[10px]',
+          win?.maximized ? 'rounded-none' : 'rounded-[10px]',
           isActive
             ? 'win-mica-foc shadow-[3px_3px_28px_4px_var(--color-win-shadow)]'
             : 'bg-[var(--color-win-unfoc)] shadow-[2px_2px_8px_var(--color-win-shadow)]',
@@ -133,7 +138,7 @@ export function Window({
     className,
   )
 
-  const chrome = (
+  const chrome = win ? (
     <>
       <WindowTitleBar
         title={title}
@@ -154,7 +159,7 @@ export function Window({
         onClose={() => closeWindow(id)}
       />
 
-      <div
+      <motion.div
         className={clsx(
           'scrollbar-win min-h-0 flex-1 overflow-auto',
           isWelcome
@@ -166,22 +171,26 @@ export function Window({
                   : 'bg-transparent',
               ),
         )}
+        initial={reduced ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: reduced ? 0 : 0.08, duration: 0.2 }}
       >
         {children}
-      </div>
+      </motion.div>
 
       {!isMobile && !win.maximized && !isWelcome && (
         <ResizeHandles onResizeStart={onResizeStart} />
       )}
     </>
-  )
+  ) : null
 
   if (isMobile) {
+    if (!isVisible || !win) return null
     return (
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.22 }}
+        key={id}
+        {...openAnim}
+        transition={windowTransition}
         onMouseDown={() => focusWindow(id)}
         className={clsx(
           shellClass,
@@ -191,39 +200,14 @@ export function Window({
         role="dialog"
         aria-label={title}
         aria-modal={false}
+        style={{ '--win-accent': color }}
       >
         {chrome}
       </motion.div>
     )
   }
 
-  const shell = (
-    <div
-      ref={nodeRef}
-      onMouseDown={() => focusWindow(id)}
-      onDoubleClick={(e) => {
-        if (e.target.closest('.window-drag')) maximizeWindow(id)
-      }}
-      style={{
-        width: win.maximized ? '100%' : w,
-        height: win.maximized ? '100%' : h,
-        zIndex: win.zIndex,
-      }}
-      className={clsx(shellClass, 'absolute')}
-      role="dialog"
-      aria-label={title}
-      aria-modal={false}
-    >
-      <motion.div
-        className="flex h-full min-h-0 w-full flex-col"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.2 }}
-      >
-        {chrome}
-      </motion.div>
-    </div>
-  )
+  if (!isVisible || !win) return null
 
   return (
     <Draggable
@@ -236,7 +220,31 @@ export function Window({
       onStop={(_, data) => moveWindow(id, data.x, data.y)}
       onStart={() => focusWindow(id)}
     >
-      {shell}
+      <div
+        ref={nodeRef}
+        onMouseDown={() => focusWindow(id)}
+        onDoubleClick={(e) => {
+          if (e.target.closest('.window-drag')) maximizeWindow(id)
+        }}
+        style={{
+          width: win.maximized ? '100%' : w,
+          height: win.maximized ? '100%' : h,
+          zIndex: win.zIndex,
+          '--win-accent': color,
+        }}
+        className={clsx(shellClass, 'absolute')}
+        role="dialog"
+        aria-label={title}
+        aria-modal={false}
+      >
+        <motion.div
+          className="flex h-full min-h-0 w-full flex-col"
+          {...openAnim}
+          transition={windowTransition}
+        >
+          {chrome}
+        </motion.div>
+      </div>
     </Draggable>
   )
 }

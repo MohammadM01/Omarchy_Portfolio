@@ -25,7 +25,7 @@ export function ToastProvider({ children }) {
         // Dedupe identical visible toasts (StrictMode / double fire)
         if (t.some((x) => x.message === message)) return t
         id = ++toastId
-        return [...t, { id, message, tone }]
+        return [...t, { id, message, tone, ttl }]
       })
       if (id == null) return null
       window.setTimeout(() => dismiss(id), ttl)
