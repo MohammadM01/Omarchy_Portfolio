@@ -32,6 +32,7 @@ npm run dev
 ## Features
 
 - Desktop shell (taskbar, Start menu, acrylic windows)
+- SEO / GEO / AEO: meta + Open Graph, JSON-LD (Person, FAQ, projects), sitemap, robots, crawlable content
 - Colorful per-app window accents
 - Light / dark Fluent themes
 - Desktop icons + right-click context menu

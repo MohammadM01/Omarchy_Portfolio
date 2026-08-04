@@ -5,8 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generate-seo-files.mjs",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "seo:generate": "node scripts/generate-seo-files.mjs",
+    "seo:audit": "node scripts/seo-audit.mjs",
+    "seo:test": "vite-node scripts/seo-schema-test.mjs"
   },
   "dependencies": {
     "@fluentui/react-icons": "^2.0.334",

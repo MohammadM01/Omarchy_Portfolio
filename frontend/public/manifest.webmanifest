@@ -1,0 +1,27 @@
+{
+  "name": "Mohammad's Portfolio — Mohammad Mulla",
+  "short_name": "MM Portfolio",
+  "description": "Software Development Engineer portfolio of Mohammad Mulla — full-stack, DSA, hackathon projects. Based in Bhiwandi, Mumbai.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07080d",
+  "theme_color": "#0078D4",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "orientation": "any",
+  "categories": ["portfolio", "developer", "productivity"],
+  "icons": [
+    {
+      "src": "/profile.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/og-image.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

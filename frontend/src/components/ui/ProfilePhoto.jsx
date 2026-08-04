@@ -36,7 +36,11 @@ export function ProfilePhoto({
     >
       <img
         src={profile.photoUrl}
-        alt={alt || profile.name}
+        alt={alt || `${profile.name}, ${profile.title}`}
+        width={144}
+        height={144}
+        loading={size === 'xl' || size === 'lg' ? 'eager' : 'lazy'}
+        decoding="async"
         className="h-full w-full object-cover object-[50%_18%]"
         draggable={false}
       />

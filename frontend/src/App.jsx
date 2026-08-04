@@ -3,6 +3,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { BootScreen } from './components/layout/BootScreen'
 import { Desktop } from './components/layout/Desktop'
 import { AppProviders } from './components/layout/AppProviders'
+import { SeoHead } from './components/seo/SeoHead'
+import { SeoContent } from './components/seo/SeoContent'
+import { Analytics } from './components/seo/Analytics'
 import { easings } from './utils/motion'
 
 function readQueryFlag(name) {
@@ -24,6 +27,9 @@ export default function App() {
 
   return (
     <AppProviders>
+      <SeoHead />
+      <Analytics />
+      <SeoContent />
       <AnimatePresence mode="wait">
         {!booted ? (
           <motion.div
