@@ -14,7 +14,7 @@ export function AboutWindow() {
   })
 
   return (
-    <Window id="about" title="About Me" width={560}>
+    <Window id="about" title="About Me" width={660}>
       <div className="flex flex-col gap-5 sm:flex-row">
         <div className="flex shrink-0 flex-col items-center gap-2">
           <ProfilePhoto size="xl" rounded="xl" className="!h-36 !w-36 shadow-xl" />

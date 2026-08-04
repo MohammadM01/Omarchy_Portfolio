@@ -71,7 +71,7 @@ export function Terminal() {
       <div className="term-drag flex h-9 shrink-0 cursor-grab items-center justify-between border-b border-white/10 bg-[#1a1a1a] px-1 active:cursor-grabbing">
         <div className="flex items-center gap-2 pl-2">
           <span className="h-2.5 w-2.5 rounded-full bg-win-accent" />
-          <span className="text-xs text-white/90">Terminal — {cwd}</span>
+          <span className="text-xs text-white/90">Terminal · {cwd}</span>
         </div>
         <div className="flex">
           {!isMobile && (

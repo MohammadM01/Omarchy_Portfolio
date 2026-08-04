@@ -1,14 +1,7 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-import {
-  Wifi,
-  Volume2,
-  VolumeX,
-  Sun,
-  Moon,
-  Search,
-} from 'lucide-react'
+import { Sun, Moon, Search } from 'lucide-react'
 import { APPS } from '../../data/portfolioData'
 import { MOBILE_TASKBAR_IDS } from '../../constants'
 import { useWindows } from '../../contexts/WindowContext'
@@ -21,6 +14,7 @@ import { WinLogo } from '../ui/WinLogo'
 import { AppIcon } from '../ui/AppIcon'
 import { ProfilePhoto } from '../ui/ProfilePhoto'
 import { StartMenu } from './StartMenu'
+import { QuickSettingsTrigger } from './QuickSettings'
 
 function TaskbarButton({ app, active, minimized, onClick }) {
   return (
@@ -70,23 +64,9 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
   const { windows, openWindow, focusWindow, isOpen } = useWindows()
   const { toggle: toggleTerminal, isOpen: termOpen } = useTerminal()
   const { isDark, toggleTheme } = useTheme()
-  const { enabled: soundOn, toggle: toggleSound, play } = useSound()
+  const { play } = useSound()
   const { time, date } = useClock()
   const isMobile = useIsMobile()
-  const [online, setOnline] = useState(
-    typeof navigator !== 'undefined' ? navigator.onLine : true,
-  )
-
-  useEffect(() => {
-    const on = () => setOnline(true)
-    const off = () => setOnline(false)
-    window.addEventListener('online', on)
-    window.addEventListener('offline', off)
-    return () => {
-      window.removeEventListener('online', on)
-      window.removeEventListener('offline', off)
-    }
-  }, [])
 
   const apps = useMemo(() => {
     if (!isMobile) return APPS
@@ -145,7 +125,7 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
                 : 'hover:bg-black/[0.06] dark:hover:bg-white/[0.08]',
             )}
           >
-            <WinLogo className="h-7 w-7" glow />
+            <WinLogo className="h-8 w-8" glow />
           </button>
 
           {!isMobile && (
@@ -190,32 +170,6 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
           <div className="flex items-center gap-0.5">
             <button
               type="button"
-              aria-label={soundOn ? 'Mute sounds' : 'Enable sounds'}
-              onClick={() => {
-                toggleSound()
-                play('click')
-              }}
-              className="grid h-10 w-10 place-items-center rounded-2xl text-win-text transition-colors hover:bg-black/[0.06] dark:hover:bg-white/[0.08]"
-            >
-              {soundOn ? (
-                <Volume2 className="h-4 w-4" />
-              ) : (
-                <VolumeX className="h-4 w-4" />
-              )}
-            </button>
-            <button
-              type="button"
-              aria-label="Network"
-              title={online ? 'Connected' : 'Offline'}
-              className={clsx(
-                'grid h-10 w-10 place-items-center rounded-2xl transition-colors hover:bg-black/[0.06] dark:hover:bg-white/[0.08]',
-                online ? 'text-win-text' : 'text-win-danger',
-              )}
-            >
-              <Wifi className="h-4 w-4" />
-            </button>
-            <button
-              type="button"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
               title={isDark ? 'Light mode' : 'Dark mode'}
               onClick={() => {
@@ -230,6 +184,7 @@ export function Taskbar({ onReplayBoot, startOpen, setStartOpen }) {
                 <Moon className="h-4 w-4 transition-transform duration-300" />
               )}
             </button>
+            <QuickSettingsTrigger />
             <button
               type="button"
               aria-label="Open About Me"

@@ -8,14 +8,29 @@ export function WindowControls({
   onClose,
   showMinimize = true,
   showMaximize = true,
+  compact = false,
 }) {
+  const btn = compact
+    ? 'welcome-ctrl grid h-6 w-6 place-items-center rounded-sm transition-colors'
+    : 'grid h-[38px] w-[46px] place-items-center text-win-text transition-colors hover:bg-black/[0.06] dark:hover:bg-white/[0.08]'
+  const closeBtn = compact
+    ? 'welcome-ctrl grid h-6 w-6 place-items-center rounded-sm transition-colors hover:!bg-[#c42b1c] hover:!text-white'
+    : 'grid h-[38px] w-[46px] place-items-center text-win-text transition-colors hover:bg-[#c42b1c] hover:text-white'
+  const iconClass = compact ? 'h-3 w-3' : 'h-3.5 w-3.5'
+  const squareClass = compact ? 'h-2.5 w-2.5' : 'h-3 w-3'
+
   return (
-    <div className="window-no-drag relative z-30 flex h-full shrink-0 items-stretch">
+    <div
+      className={clsx(
+        'window-no-drag relative z-30 flex shrink-0 items-center',
+        compact ? 'h-full gap-0.5 pr-2.5' : 'h-full items-stretch',
+      )}
+    >
       {showMinimize && (
         <button
           type="button"
           aria-label="Minimize"
-          className="grid h-[38px] w-[46px] place-items-center text-win-text transition-colors hover:bg-black/[0.06] dark:hover:bg-white/[0.08]"
+          className={btn}
           onMouseDown={(e) => e.stopPropagation()}
           onClick={(e) => {
             e.stopPropagation()
@@ -23,14 +38,14 @@ export function WindowControls({
             onMinimize?.()
           }}
         >
-          <Minus className="h-3.5 w-3.5" strokeWidth={2} />
+          <Minus className={iconClass} strokeWidth={2} />
         </button>
       )}
       {showMaximize && (
         <button
           type="button"
           aria-label="Maximize"
-          className="grid h-[38px] w-[46px] place-items-center text-win-text transition-colors hover:bg-black/[0.06] dark:hover:bg-white/[0.08]"
+          className={btn}
           onMouseDown={(e) => e.stopPropagation()}
           onClick={(e) => {
             e.stopPropagation()
@@ -38,13 +53,13 @@ export function WindowControls({
             onMaximize?.()
           }}
         >
-          <Square className="h-3 w-3" strokeWidth={2} />
+          <Square className={squareClass} strokeWidth={2} />
         </button>
       )}
       <button
         type="button"
         aria-label="Close"
-        className="grid h-[38px] w-[46px] place-items-center text-win-text transition-colors hover:bg-[#c42b1c] hover:text-white"
+        className={closeBtn}
         onMouseDown={(e) => e.stopPropagation()}
         onClick={(e) => {
           e.stopPropagation()
@@ -52,7 +67,7 @@ export function WindowControls({
           onClose?.()
         }}
       >
-        <X className="h-3.5 w-3.5" strokeWidth={2} />
+        <X className={iconClass} strokeWidth={2} />
       </button>
     </div>
   )
@@ -64,6 +79,7 @@ WindowControls.propTypes = {
   onClose: PropTypes.func,
   showMinimize: PropTypes.bool,
   showMaximize: PropTypes.bool,
+  compact: PropTypes.bool,
 }
 
 export function WindowTitleBar({
@@ -77,15 +93,22 @@ export function WindowTitleBar({
   onClose,
   showMinimize = true,
   showMaximize = true,
+  compact = false,
 }) {
   return (
     <div
       className={clsx(
-        'relative z-10 flex h-[38px] shrink-0 items-center justify-between',
+        'relative z-10 flex shrink-0 items-center justify-between',
+        compact ? 'h-11' : 'h-[38px]',
         !isActive && 'opacity-50',
       )}
     >
-      <div className="window-drag flex min-w-0 flex-1 cursor-grab items-center gap-2 self-stretch pl-2.5 active:cursor-grabbing">
+      <div
+        className={clsx(
+          'window-drag flex min-w-0 flex-1 cursor-grab items-center self-stretch active:cursor-grabbing',
+          compact ? 'gap-2 pl-4' : 'gap-2 pl-2.5',
+        )}
+      >
         {icon || (
           <span
             className="grid h-[18px] w-[18px] shrink-0 place-items-center rounded-[4px] text-[9px] font-bold text-white"
@@ -96,7 +119,14 @@ export function WindowTitleBar({
             ●
           </span>
         )}
-        <h2 className="truncate text-[15px] leading-none text-win-text">
+        <h2
+          className={clsx(
+            'truncate leading-none',
+            compact
+              ? 'welcome-title text-[13px] font-medium'
+              : 'text-[15px] text-win-text',
+          )}
+        >
           {title}
         </h2>
         {loading && (
@@ -112,6 +142,7 @@ export function WindowTitleBar({
         onClose={onClose}
         showMinimize={showMinimize}
         showMaximize={showMaximize}
+        compact={compact}
       />
     </div>
   )
@@ -128,4 +159,5 @@ WindowTitleBar.propTypes = {
   onClose: PropTypes.func,
   showMinimize: PropTypes.bool,
   showMaximize: PropTypes.bool,
+  compact: PropTypes.bool,
 }

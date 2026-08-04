@@ -13,7 +13,6 @@ const MIN_W = 360
 const MIN_H = 260
 
 function ResizeHandles({ onResizeStart }) {
-  // Keep handles clear of the title-bar control buttons (top-right)
   const edges = [
     { dir: 'n', className: 'left-2 right-14 top-0 h-1.5 cursor-n-resize' },
     { dir: 's', className: 'left-2 right-2 bottom-0 h-1.5 cursor-s-resize' },
@@ -42,10 +41,11 @@ export function Window({
   id,
   title,
   children,
-  width: defaultWidth = 520,
-  height: defaultHeight = 420,
+  width: defaultWidth = 620,
+  height: defaultHeight = 540,
   className,
   accent,
+  variant = 'default',
 }) {
   const nodeRef = useRef(null)
   const isMobile = useIsMobile()
@@ -61,18 +61,18 @@ export function Window({
     isLoading,
   } = useWindows()
 
+  const isWelcome = variant === 'welcome'
   const win = windows[id]
   const isVisible = Boolean(win?.open && !win?.minimized)
   const isActive = activeId === id
   const loading = isLoading(id)
   const color = accent || WINDOW_ACCENTS[id] || '#3b91d8'
-  const w = win?.width || defaultWidth
+  const w = isWelcome ? 580 : win?.width || defaultWidth
   const h = win?.height || defaultHeight
 
-  // Hooks must run every render — never after an early return
   const onResizeStart = useCallback(
     (e, dir) => {
-      if (!win) return
+      if (!win || isWelcome) return
       e.preventDefault()
       e.stopPropagation()
       focusWindow(id)
@@ -114,17 +114,22 @@ export function Window({
       window.addEventListener('mousemove', onMove)
       window.addEventListener('mouseup', onUp)
     },
-    [focusWindow, id, resizeWindow, win, w, h],
+    [focusWindow, id, resizeWindow, win, w, h, isWelcome],
   )
 
   if (!isVisible || !win) return null
 
   const shellClass = clsx(
-    'pointer-events-auto flex flex-col overflow-hidden border border-[var(--color-win-border)] transition-[box-shadow,background] duration-200',
-    win.maximized ? 'rounded-none' : 'rounded-[10px]',
-    isActive
-      ? 'win-mica-foc shadow-[3px_3px_28px_4px_var(--color-win-shadow)]'
-      : 'bg-[var(--color-win-unfoc)] shadow-[2px_2px_8px_var(--color-win-shadow)]',
+    'pointer-events-auto flex flex-col overflow-hidden transition-[box-shadow,background] duration-200',
+    isWelcome
+      ? 'welcome-shell rounded-xl'
+      : clsx(
+          'border border-[var(--color-win-border)]',
+          win.maximized ? 'rounded-none' : 'rounded-[10px]',
+          isActive
+            ? 'win-mica-foc shadow-[3px_3px_28px_4px_var(--color-win-shadow)]'
+            : 'bg-[var(--color-win-unfoc)] shadow-[2px_2px_8px_var(--color-win-shadow)]',
+        ),
     className,
   )
 
@@ -133,10 +138,11 @@ export function Window({
       <WindowTitleBar
         title={title}
         accent={color}
+        compact={isWelcome}
         icon={
           <AppIcon
             id={id.startsWith('project-') ? 'projects' : id}
-            size={18}
+            size={isWelcome ? 16 : 18}
           />
         }
         loading={loading}
@@ -150,16 +156,21 @@ export function Window({
 
       <div
         className={clsx(
-          'scrollbar-win min-h-0 flex-1 overflow-auto p-4 md:p-5',
-          isActive
-            ? 'bg-[color-mix(in_srgb,var(--color-win-bg)_62%,transparent)]'
-            : 'bg-transparent',
+          'scrollbar-win min-h-0 flex-1 overflow-auto',
+          isWelcome
+            ? 'welcome-shell__body px-8 pb-8 pt-6'
+            : clsx(
+                'p-4 md:p-5',
+                isActive
+                  ? 'bg-[color-mix(in_srgb,var(--color-win-bg)_62%,transparent)]'
+                  : 'bg-transparent',
+              ),
         )}
       >
         {children}
       </div>
 
-      {!isMobile && !win.maximized && (
+      {!isMobile && !win.maximized && !isWelcome && (
         <ResizeHandles onResizeStart={onResizeStart} />
       )}
     </>
@@ -172,7 +183,11 @@ export function Window({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.22 }}
         onMouseDown={() => focusWindow(id)}
-        className={clsx(shellClass, 'relative mb-3 w-full max-h-[70vh]')}
+        className={clsx(
+          shellClass,
+          'relative mb-3 w-full max-h-[70vh]',
+          isWelcome && 'max-w-[580px]',
+        )}
         role="dialog"
         aria-label={title}
         aria-modal={false}
@@ -182,7 +197,6 @@ export function Window({
     )
   }
 
-  // Outer node owns drag transform; inner motion only fades (no transform conflict)
   const shell = (
     <div
       ref={nodeRef}
@@ -235,4 +249,5 @@ Window.propTypes = {
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   className: PropTypes.string,
   accent: PropTypes.string,
+  variant: PropTypes.oneOf(['default', 'welcome']),
 }

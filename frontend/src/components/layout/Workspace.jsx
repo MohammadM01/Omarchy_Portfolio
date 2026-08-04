@@ -9,7 +9,6 @@ import { AchievementsWindow } from '../windows/AchievementsWindow'
 import { EducationWindow } from '../windows/EducationWindow'
 import { GitHubWindow } from '../windows/GitHubWindow'
 import { ContactWindow } from '../windows/ContactWindow'
-import { AboutWin12Window } from '../windows/AboutWin12Window'
 import { PersonalizeWindow } from '../windows/PersonalizeWindow'
 import { ThisPCWindow } from '../windows/ThisPCWindow'
 import { EdgeWindow } from '../windows/EdgeWindow'
@@ -81,7 +80,7 @@ export function Workspace({ onOpenApp, editMode, refreshKey, onExitEdit }) {
             exit={{ opacity: 0, y: -12 }}
             className="pointer-events-auto absolute left-1/2 top-3 z-[45] flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/20 bg-black/55 px-4 py-2 text-sm text-white shadow-lg backdrop-blur-xl"
           >
-            <span>Edit mode — drag icons to rearrange</span>
+            <span>Edit mode: drag icons to rearrange</span>
             <button
               type="button"
               onClick={onExitEdit}
@@ -109,7 +108,6 @@ export function Workspace({ onOpenApp, editMode, refreshKey, onExitEdit }) {
         <AchievementsWindow />
         <GitHubWindow />
         <ContactWindow />
-        <AboutWin12Window />
         <PersonalizeWindow />
         <ThisPCWindow />
         <EdgeWindow />

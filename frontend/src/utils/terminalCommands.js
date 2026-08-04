@@ -1,7 +1,7 @@
 import { achievements, education, profile, projects, skills } from '../data/portfolioData'
 
 const HELP = [
-  'Windows 12 Terminal — available commands',
+  'Windows 12 Terminal. Available commands:',
   '',
   '  help                   Show this help',
   '  about                  Open About / print profile',
@@ -64,7 +64,7 @@ export function processCommand(raw, state) {
         { type: 'accent', text: 'Projects' },
         ...projects.map((p) => ({
           type: 'plain',
-          text: `  ${p.name} — ${p.subtitle}`,
+          text: `  ${p.name}: ${p.subtitle}`,
         })),
       ],
       openWindow: 'projects',

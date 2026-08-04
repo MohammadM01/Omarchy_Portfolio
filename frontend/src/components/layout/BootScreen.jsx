@@ -95,7 +95,7 @@ export function BootScreen({ onDone, hold = false }) {
               animate={{ opacity: 1, scale: 1 }}
               className="mb-8"
             >
-              <WinLogo className="h-20 w-20" glow />
+              <WinLogo className="h-24 w-24" glow />
             </motion.div>
 
             <p className="mb-1 text-lg font-semibold tracking-wide text-white">

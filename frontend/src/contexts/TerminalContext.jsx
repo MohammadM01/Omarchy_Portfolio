@@ -28,7 +28,7 @@ const ASCII_BANNER = [
   { type: 'accent', text: ' | |  | | (_) | | | | (_| | | | | | | | | | | | (_| |' },
   { type: 'accent', text: ' |_|  |_|\\___/|_| |_|\\__,_|_| |_| |_|_| |_| |_|\\__,_|' },
   { type: 'dim', text: '' },
-  { type: 'plain', text: ' Mohammad Mulla · Full-Stack & AI · Windows 12 Desktop' },
+  { type: 'plain', text: ' Mohammad Mulla · SDE · Windows 12 Desktop' },
   { type: 'dim', text: ' Type `help` · try `about` or `projects`' },
   { type: 'dim', text: '' },
 ]
@@ -37,7 +37,7 @@ function buildBootLines(showBanner) {
   const lines = showBanner
     ? ASCII_BANNER.map((l) => ({ id: nextId(), ...l }))
     : [
-        { id: nextId(), type: 'dim', text: 'Windows 12 Terminal — ready' },
+        { id: nextId(), type: 'dim', text: 'Windows 12 Terminal ready' },
         {
           id: nextId(),
           type: 'plain',

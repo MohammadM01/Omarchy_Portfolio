@@ -1,11 +1,11 @@
 /**
- * Portfolio data — Mohammad Mulla
- * Windows 12 desktop portfolio
+ * Portfolio data - Mohammad Mulla
+ * Positioning: Software Development Engineer (SDE)
  */
 
 export const profile = {
   name: 'Mohammad Mulla',
-  title: 'Software Engineer · Full-Stack & AI',
+  title: 'Software Development Engineer',
   phone: '+91-8983228237',
   email: 'mullamohammad123@gmail.com',
   location: 'Bhiwandi, Mumbai, India',
@@ -15,20 +15,27 @@ export const profile = {
   githubUrl: 'https://github.com/MohammadM01',
   githubUser: 'MohammadM01',
   resumeUrl: '/Resume.pdf',
-  photoUrl: '/profile.png',
-  availability: 'Open to roles · Mumbai or Remote',
+  photoUrl: '/about_pic/img.png',
+  availability: 'Actively looking for SDE roles. Mumbai or Remote.',
   monogram: 'MM',
-  tagline: 'I build things people can ship — and trust.',
+  tagline: 'Welcome to my Portfolio. Clean code. Sharp systems. Ready to ship.',
   summaryShort:
-    'I love turning messy ideas into clean products. Hackathon wins, AI systems, and full-stack apps are my happy place — Java, React, Node, and modern LLM stacks.',
+    'Software Development Engineer with solid DSA and system design fundamentals. Experience building production-style apps in Java, React, Node.js, and SQL. National hackathon recognition and a global BNB Honorable Mention.',
   summary:
-    'I’m a software engineer who enjoys building products end to end — from the first sketch to something real users can click. I’ve placed at national hackathons and earned a global Honorable Mention at the BNB Hackathon. Day to day I work with Java, React, Node.js, SQL, and AI tooling, with a soft spot for systems that feel fast, clear, and thoughtfully designed.',
+    'Software Development Engineer with hands-on experience across backend, frontend, and databases. Comfortable with Java, C++, Python, JavaScript, SQL, React, Node.js, and Docker. Strong DSA practice and system design interest. Delivered projects involving high-throughput processing, REST APIs, and scalable web apps. Recognized in national hackathons and globally at the BNB Hackathon.',
 }
 
 export const badges = [
-  { id: 'sih', short: 'SIH 1st', label: '1st · Smart India Hackathon Internal' },
-  { id: 'national', short: 'National Runner-up', label: '1st Runner-Up · National Hackathon' },
-  { id: 'bnb', short: 'BNB Mention', label: 'Honorable Mention · BNB Hackathon (Global)' },
+  {
+    id: 'national',
+    short: '1st Runner-Up · National Level Hackathon',
+    label: '1st Runner-Up · National Level Hackathon',
+  },
+  {
+    id: 'bnb',
+    short: 'Honorable Mention at BNB Hackathon (Global)',
+    label: 'Honorable Mention at BNB Hackathon (Global)',
+  },
 ]
 
 export const experience = [
@@ -37,25 +44,19 @@ export const experience = [
     role: 'Software Developer Intern',
     company: 'DataMatex Technologies',
     location: 'Bhiwandi',
-    period: 'Dec 2025 – Mar 2026',
+    period: 'Dec 2025 - Mar 2026',
     bullets: [
-      'Built fresh, mobile-friendly websites for 3+ local businesses — clearer stories online, and about 18% more people sticking around to engage.',
-      'Tuned performance and SEO so pages loaded ~25% faster, and inquiry forms started getting about 12% more submissions.',
+      'Developed and shipped responsive web apps for 3+ clients using modern frontend practices, improving engagement by ~18%.',
+      'Optimized page performance and SEO, reducing load time by ~25% and increasing form submissions by ~12%.',
     ],
   },
 ]
 
 export const skills = {
   Languages: ['Java', 'Python', 'C++', 'JavaScript', 'SQL'],
-  'Frameworks & Libraries': [
-    'React.js',
-    'Next.js',
-    'Node.js',
-    'Express.js',
-    'FastAPI',
-    'Tailwind CSS',
-  ],
-  'AI / LLM': ['RAG', 'RAG Pipelines', 'LangChain', 'LangGraph'],
+  'Core CS': ['Data Structures', 'Algorithms', 'OOP', 'System Design basics'],
+  'Backend & APIs': ['Node.js', 'Express.js', 'FastAPI', 'REST APIs'],
+  Frontend: ['React.js', 'Next.js', 'Tailwind CSS'],
   'Databases & Tools': [
     'MySQL',
     'PostgreSQL',
@@ -66,13 +67,14 @@ export const skills = {
     'Postman',
     'Linux',
   ],
+  'Also worked with': ['RAG', 'LangChain', 'LangGraph'],
 }
 
 export const education = {
   degree: 'B.Tech in Computer Engineering',
   school: 'Shivajirao S. Jondhale College of Engineering',
   location: 'Dombivli, India',
-  period: 'Nov 2022 – May 2026',
+  period: 'Nov 2022 - May 2026',
   cgpa: '7.5/10',
 }
 
@@ -80,14 +82,14 @@ export const projects = [
   {
     id: 'cryptguard',
     name: 'CryptGuard',
-    subtitle: 'Catch threats in encrypted traffic — without breaking privacy',
-    period: 'Feb 2026 – Mar 2026',
+    subtitle: 'High-throughput encrypted traffic analysis engine',
+    period: 'Feb 2026 - Mar 2026',
     github: 'https://github.com/ShifaKhan21/CryptGuard',
     demo: null,
-    image: '/projects/cryptguard.svg',
+    image: '/projects/cryptguard.png',
     description:
-      'A fast DPI engine that studies encrypted traffic without decrypting it. It keeps pace at 22K+ flows/sec with tiny latency, and spots dangerous patterns — like C2 beaconing — with ~99% accuracy using rules, threat intel, and machine learning.',
-    tech: ['C++', 'Python', 'DPI', 'ML', 'TLS/JA3'],
+      'Built a multi-threaded DPI pipeline in C++/Python for encrypted traffic. Processed 22K+ flows/sec at 0.044 ms latency without decryption. Combined rules, threat intel, and ML (Random Forest on CICIDS) for ~99% detection accuracy.',
+    tech: ['C++', 'Python', 'Multithreading', 'ML', 'TLS/JA3'],
     metrics: [
       { label: 'flows/sec', value: '22K+' },
       { label: 'latency', value: '0.044ms' },
@@ -97,14 +99,13 @@ export const projects = [
   {
     id: 'chaincred',
     name: 'ChainCred',
-    subtitle: 'Credentials you can prove in minutes, not days',
-    period: 'Oct 2025 – Jan 2026',
+    subtitle: 'Full-stack credential verification platform',
+    period: 'Oct 2025 - Jan 2026',
     github: 'https://github.com/MohammadM01/Chain-Cred-final',
-    demo: null,
-    image: '/projects/chaincred.svg',
+    demo: 'https://chaincred-frontend.onrender.com/',
     description:
-      'A decentralized credential app with wallet login. Instead of waiting days to verify someone’s background, checks finish in under two minutes — plus a dashboard, resume tools, OCR, and smarter networking built in.',
-    tech: ['React', 'Node.js', 'MongoDB', 'Solidity', 'opBNB', 'BNB Greenfield'],
+      'Designed and implemented a full-stack app with wallet auth, on-chain credentials, and a React dashboard. Reduced verification time from days to under 2 minutes. Built APIs, MongoDB models, OCR flow, and resume tooling.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Solidity', 'opBNB', 'REST'],
     metrics: [
       { label: 'verify time', value: '<2 min' },
       { label: 'stack', value: 'opBNB' },
@@ -114,21 +115,20 @@ export const projects = [
   {
     id: 'civic-eye',
     name: 'Civic Eye',
-    subtitle: 'Report a city issue. Watch it get routed and resolved.',
-    period: 'Jul 2025 – Aug 2025',
+    subtitle: 'End-to-end civic issue reporting system (SIH 2025)',
+    period: 'Jul 2025 - Aug 2025',
     github: 'https://github.com/MohammadM01/civic',
     demo: 'https://civic-eye.onrender.com',
-    image: '/projects/civic-eye.svg',
+    image: '/projects/civic-eye.png',
     description:
-      'Built for SIH 2025: snap a civic problem, tag the location, and AI (YOLOv8) helps sort it. Transparent trails, contractor bidding, and a bit of gamification keep the loop honest — live demo on Render.',
+      'Shipped a full-stack reporting platform with React frontend, Node/Express APIs, GPS tagging, and YOLOv8-based issue classification (~92% accuracy). Added audit trails and contractor workflows. Deployed demo on Render.',
     tech: [
       'React',
       'Node.js',
       'Express',
       'YOLOv8',
-      'Blockchain',
-      'Google Translate API',
       'REST APIs',
+      'MongoDB',
     ],
     metrics: [
       { label: 'vision acc.', value: '92%' },
@@ -141,21 +141,21 @@ export const projects = [
 export const achievements = [
   {
     id: 'sih',
-    title: '1st · Smart India Hackathon (Internal)',
+    title: '1st Place, Smart India Hackathon (Internal)',
     detail:
-      'Shipped Civic Eye with computer vision hitting 92% accuracy — and finished ahead of 30+ teams.',
+      'Led development of Civic Eye. Vision pipeline hit 92% accuracy; placed 1st among 30+ teams.',
   },
   {
     id: 'national',
-    title: '1st Runner-Up · National Hackathon',
+    title: '1st Runner-Up, National-Level Hackathon',
     detail:
-      'Brought CryptGuard to the floor: 22K+ flows/sec and ~99% detection accuracy under pressure.',
+      'Built CryptGuard: 22K+ flows/sec throughput and ~99% threat detection accuracy.',
   },
   {
     id: 'bnb',
-    title: 'Honorable Mention · BNB Hackathon (Global)',
+    title: 'Honorable Mention, BNB Hackathon (Global)',
     detail:
-      'ChainCred caught global attention for making verifiable credentials feel practical, not theoretical.',
+      'Recognized for ChainCred, a full-stack verifiable credential system on opBNB.',
   },
 ]
 
@@ -172,7 +172,6 @@ export const WINDOW_ACCENTS = {
   contact: '#E3008C',
   terminal: '#1A1A1A',
   personalize: '#0078D4',
-  'about-win12': '#3b91d8',
   'this-pc': '#0078D4',
   settings: '#6B6B6B',
   edge: '#0078D4',

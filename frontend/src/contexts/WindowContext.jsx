@@ -13,25 +13,47 @@ import { STORAGE_KEYS } from '../constants'
 
 const WindowContext = createContext(null)
 
-const TASKBAR = 56
+const TASKBAR = 72
 const MIN_W = 360
 const MIN_H = 260
+/** Lift windows slightly above geometric center so they don't sit too low */
+const CENTER_Y_BIAS = 48
 
 function viewportSize() {
   if (typeof window === 'undefined') return { vw: 1280, vh: 800 }
   return { vw: window.innerWidth, vh: window.innerHeight }
 }
 
-export function centerPosition(width = 520, height = 420) {
+export function centerPosition(width = 620, height = 540) {
   const { vw, vh } = viewportSize()
   const w = Math.min(width, vw - 32)
-  const h = Math.min(height, vh - TASKBAR - 32)
-  return {
-    x: Math.max(16, Math.round((vw - w) / 2)),
-    y: Math.max(16, Math.round((vh - TASKBAR - h) / 2)),
-    width: w,
-    height: h,
-  }
+  const usableH = Math.max(200, vh - TASKBAR - 24)
+  const h = Math.min(height, usableH)
+  const x = Math.max(16, Math.round((vw - w) / 2))
+  const y = Math.max(
+    20,
+    Math.round((usableH - h) / 2 - CENTER_Y_BIAS),
+  )
+  return { x, y, width: w, height: h }
+}
+
+const WELCOME_W = 580
+const WELCOME_H = 580
+
+/** Default sizes when opening apps */
+export const DEFAULT_WINDOW_SIZES = {
+  welcome: { width: WELCOME_W, height: WELCOME_H },
+  about: { width: 660, height: 580 },
+  experience: { width: 640, height: 580 },
+  skills: { width: 660, height: 580 },
+  projects: { width: 740, height: 640 },
+  achievements: { width: 640, height: 580 },
+  education: { width: 600, height: 500 },
+  github: { width: 620, height: 600 },
+  contact: { width: 580, height: 600 },
+  personalize: { width: 660, height: 760 },
+  'this-pc': { width: 820, height: 640 },
+  edge: { width: 660, height: 540 },
 }
 
 const DEFAULT_WINDOWS = {
@@ -40,7 +62,7 @@ const DEFAULT_WINDOWS = {
     minimized: false,
     maximized: false,
     zIndex: 10,
-    ...centerPosition(520, 440),
+    ...centerPosition(WELCOME_W, WELCOME_H),
   },
 }
 
@@ -54,7 +76,7 @@ function loadInitial() {
           minimized: false,
           maximized: false,
           zIndex: 10,
-          ...centerPosition(520, 440),
+          ...centerPosition(WELCOME_W, WELCOME_H),
         },
       },
       activeId: 'welcome',
@@ -74,11 +96,13 @@ function reducer(state, action) {
       const { id, defaults = {} } = action
       const existing = state.windows[id]
       const zIndex = state.nextZ
+      const preset = DEFAULT_WINDOW_SIZES[id] || {}
+      const baseW =
+        defaults.width ?? existing?.width ?? preset.width ?? 620
+      const baseH =
+        defaults.height ?? existing?.height ?? preset.height ?? 540
       if (existing) {
-        const centered = centerPosition(
-          existing.width || defaults.width || 520,
-          existing.height || defaults.height || 420,
-        )
+        const centered = centerPosition(baseW, baseH)
         return {
           ...state,
           activeId: id,
@@ -96,9 +120,7 @@ function reducer(state, action) {
           },
         }
       }
-      const w = defaults.width ?? 520
-      const h = defaults.height ?? 420
-      const pos = centerPosition(w, h)
+      const pos = centerPosition(baseW, baseH)
       return {
         ...state,
         activeId: id,
@@ -111,8 +133,6 @@ function reducer(state, action) {
             maximized: false,
             zIndex,
             ...pos,
-            ...defaults,
-            ...centerPosition(defaults.width ?? w, defaults.height ?? h),
           },
         },
       }
@@ -151,7 +171,7 @@ function reducer(state, action) {
       const win = state.windows[id]
       if (!win) return state
       if (win.maximized) {
-        const restore = win._restore || centerPosition(win.width || 520, win.height || 420)
+        const restore = win._restore || centerPosition(win.width || 620, win.height || 540)
         return {
           ...state,
           activeId: id,

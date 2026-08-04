@@ -7,10 +7,6 @@ import { STORAGE_KEYS } from '../../constants'
 
 export const DEFAULT_DESKTOP_ICONS = [
   { id: 'this-pc', label: 'This PC' },
-  { id: 'settings', label: 'Settings' },
-  { id: 'about-win12', label: 'About Windows 12' },
-  { id: 'edge', label: 'Microsoft Edge' },
-  { id: 'feedback', label: 'Feedback' },
   { id: 'about', label: 'About Me' },
   { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },

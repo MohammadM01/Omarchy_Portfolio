@@ -4,7 +4,7 @@ import { GraduationCap } from 'lucide-react'
 
 export function EducationWindow() {
   return (
-    <Window id="education" title="Education" width={500}>
+    <Window id="education" title="Education" width={600}>
       <div className="space-y-4">
         <div className="flex items-start gap-3">
           <div className="grid h-10 w-10 place-items-center border border-win-accent/40 text-win-accent">

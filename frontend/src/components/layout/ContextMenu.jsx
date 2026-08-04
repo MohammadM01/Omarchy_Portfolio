@@ -6,7 +6,6 @@ import {
   DarkTheme24Regular,
   Globe24Regular,
   Edit24Regular,
-  Info24Regular,
   PaintBrush24Regular,
 } from '@fluentui/react-icons'
 
@@ -19,7 +18,6 @@ const ITEMS = [
     Icon: Globe24Regular,
   },
   { id: 'edit-mode', label: 'Enter edit mode', Icon: Edit24Regular },
-  { id: 'about-win12', label: 'About Win12 Web version', Icon: Info24Regular },
   { id: 'personalize', label: 'Personalize', Icon: PaintBrush24Regular },
 ]
 

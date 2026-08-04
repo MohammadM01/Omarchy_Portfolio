@@ -39,7 +39,7 @@ npm run dev
 - Terminal (`help`, `about`, `projects`, `skills`, `contact`, `theme`, `exit`)
 - Window position persistence
 - Live GitHub activity
-- Contact form → backend inbox (`backend/data/messages.json`)
+- Contact form → secure backend email (secrets in `backend/.env`)
 - Resume PDF download
 
 ## Deploy
@@ -55,7 +55,7 @@ Publish `frontend/dist`. Set `VITE_API_URL` to your API origin at build time.
 
 ### Backend
 
-Host `backend/` on Railway, Render, or Fly. Set CORS / reverse-proxy `/api` to it.
+Host `backend/` on Railway, Render, or Fly. Set env from `backend/.env.example` (`CONTACT_TO_EMAIL`, `SMTP_*`, `ALLOWED_ORIGINS`). Never expose SMTP secrets to the frontend.
 
 ## Shortcuts
 

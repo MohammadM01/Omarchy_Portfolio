@@ -3,7 +3,7 @@ import { skills } from '../../data/portfolioData'
 
 export function SkillsWindow() {
   return (
-    <Window id="skills" title="Skills" width={560}>
+    <Window id="skills" title="Skills" width={660}>
       <div className="space-y-5">
         {Object.entries(skills).map(([category, items]) => (
           <section key={category}>

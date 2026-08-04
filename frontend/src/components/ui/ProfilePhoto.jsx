@@ -10,7 +10,7 @@ const SIZES = {
 }
 
 /**
- * Portrait crop tuned for Formal-pic landscape photo (face near center-left).
+ * Profile portrait — centered headshot crop.
  */
 export function ProfilePhoto({
   size = 'md',
@@ -37,7 +37,7 @@ export function ProfilePhoto({
       <img
         src={profile.photoUrl}
         alt={alt || profile.name}
-        className="h-full w-full scale-[1.35] object-cover object-[42%_18%]"
+        className="h-full w-full object-cover object-[50%_18%]"
         draggable={false}
       />
     </div>

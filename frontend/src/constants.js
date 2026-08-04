@@ -6,7 +6,8 @@ export const STORAGE_KEYS = {
   windows: 'win12_windows_v2',
   termBanner: 'win12_termBanner',
   boot: BOOT_STORAGE_KEY,
-  desktopIcons: 'win12_desktop_icons_v3',
+  desktopIcons: 'win12_desktop_icons_v6',
+  brightness: 'win12_brightness',
 }
 
 export const PORTFOLIO_REPO_URL =

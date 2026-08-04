@@ -8,7 +8,7 @@ export function ProjectsWindow() {
   const { openWindow } = useWindows()
 
   return (
-    <Window id="projects" title="Projects" width={640}>
+    <Window id="projects" title="Projects" width={740}>
       <div className="mb-4 flex items-baseline justify-between gap-2">
         <p className="text-[11px] text-win-muted">
           {projects.length} projects · click to open
@@ -24,7 +24,7 @@ export function ProjectsWindow() {
             <img
               src={project.image}
               alt=""
-              className="h-28 w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
+              className="h-32 w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             />
             <div className="flex flex-col gap-2 p-3 pt-1">
               <div className="flex items-start justify-between gap-2">

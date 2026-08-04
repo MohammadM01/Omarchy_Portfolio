@@ -1,17 +1,17 @@
 import { Window } from '../ui/Window'
 import { Button } from '../ui/Button'
+import { AppIcon } from '../ui/AppIcon'
 import { profile } from '../../data/portfolioData'
-import { Globe24Color } from '@fluentui/react-icons'
 
 export function EdgeWindow() {
   return (
-    <Window id="edge" title="Microsoft Edge" width={560} height={420}>
+    <Window id="edge" title="Microsoft Edge" width={660} height={540}>
       <div className="flex flex-col items-center gap-4 py-4 text-center">
-        <Globe24Color style={{ width: 56, height: 56 }} />
+        <AppIcon id="edge" size={64} />
         <div>
           <h2 className="text-lg font-semibold text-win-text">Microsoft Edge</h2>
           <p className="mt-1 text-sm text-win-muted">
-            Jump out to the real web — GitHub, LinkedIn, or this portfolio repo.
+            Open GitHub, LinkedIn, or this portfolio repo in your browser.
           </p>
         </div>
         <div className="flex flex-wrap justify-center gap-2">
@@ -35,10 +35,6 @@ export function EdgeWindow() {
             </Button>
           </a>
         </div>
-        <p className="max-w-sm text-[12px] text-win-muted">
-          Detected browser tabs open outside this desktop — Edge here is a quick
-          launcher, just like the Win12 demo.
-        </p>
       </div>
     </Window>
   )

@@ -81,7 +81,7 @@ export function ThisPCWindow() {
   )
 
   return (
-    <Window id="this-pc" title="This PC" width={720} height={520}>
+    <Window id="this-pc" title="This PC" width={820} height={640}>
       <div className="-m-4 flex h-[min(440px,70vh)] min-h-[320px] flex-col md:-m-5">
         {/* Toolbar */}
         <div className="flex flex-wrap items-center gap-2 border-b border-[var(--color-win-border)] px-3 py-2">
@@ -196,9 +196,9 @@ export function ThisPCWindow() {
 
             {device.isMobile && (
               <p className="mt-4 rounded-xl bg-win-accent/10 px-3 py-2 text-[12px] text-win-dim">
-                You’re on a phone-sized screen — This PC shows mobile storage
-                instead of desktop disks. Rotate or open on a larger display for
-                the full desktop layout.
+                You are on a phone-sized screen. This PC shows mobile storage
+                instead of desktop disks. Use a larger display for the full
+                layout.
               </p>
             )}
           </div>

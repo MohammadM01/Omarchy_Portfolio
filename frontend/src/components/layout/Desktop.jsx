@@ -63,7 +63,7 @@ export function Desktop({ onReplayBoot }) {
         const next = !v
         push(
           next
-            ? 'Edit mode on — drag icons to rearrange'
+            ? 'Edit mode on. Drag icons to rearrange.'
             : 'Edit mode off',
           'accent',
           2200,
@@ -72,24 +72,20 @@ export function Desktop({ onReplayBoot }) {
       })
       return
     }
-    if (id === 'about-win12') {
-      openWindow('about-win12', { width: 480, height: 420 })
-      return
-    }
     if (id === 'personalize' || id === 'settings') {
-      openWindow('personalize', { width: 560, height: 640 })
+      openWindow('personalize', { width: 660, height: 760 })
       return
     }
     if (id === 'this-pc') {
-      openWindow('this-pc', { width: 720, height: 520 })
+      openWindow('this-pc', { width: 820, height: 640 })
       return
     }
     if (id === 'edge') {
-      openWindow('edge', { width: 560, height: 420 })
+      openWindow('edge', { width: 660, height: 540 })
       return
     }
     if (id === 'feedback') {
-      openWindow('contact', { width: 520, height: 480 })
+      openWindow('contact', { width: 620, height: 600 })
       return
     }
     if (id === 'terminal') {

@@ -1,9 +1,9 @@
-/** Wallpaper packs — classic CSS scene + generated dark/light pairs */
+/** Wallpaper packs: classic CSS scene + image pairs */
 export const WALLPAPERS = [
   {
     id: 'classic',
     label: 'Fluent Mosaic',
-    hint: 'The original glowing tiles',
+    hint: 'Original desktop tiles',
     kind: 'css',
     darkPreview:
       'linear-gradient(165deg, #06070c 0%, #101325 48%, #0a0c14 100%)',
@@ -13,7 +13,7 @@ export const WALLPAPERS = [
   {
     id: 'aurora',
     label: 'Aurora',
-    hint: 'Quiet night skies, soft glow',
+    hint: 'Blue and purple glow',
     kind: 'image',
     dark: '/wallpapers/wallpaper-aurora-dark.png',
     light: '/wallpapers/wallpaper-aurora-light.png',
@@ -21,7 +21,7 @@ export const WALLPAPERS = [
   {
     id: 'bloom',
     label: 'Bloom',
-    hint: 'Light that feels alive',
+    hint: 'Soft light orbs',
     kind: 'image',
     dark: '/wallpapers/wallpaper-bloom-dark.png',
     light: '/wallpapers/wallpaper-bloom-light.png',
@@ -29,7 +29,7 @@ export const WALLPAPERS = [
   {
     id: 'horizon',
     label: 'Horizon',
-    hint: 'A calm line of light',
+    hint: 'Wide light band',
     kind: 'image',
     dark: '/wallpapers/wallpaper-horizon-dark.png',
     light: '/wallpapers/wallpaper-horizon-light.png',
@@ -37,7 +37,7 @@ export const WALLPAPERS = [
   {
     id: 'ember',
     label: 'Ember',
-    hint: 'Warm reds that feel bold',
+    hint: 'Red tones',
     kind: 'image',
     dark: '/wallpapers/wallpaper-ember-dark.png',
     light: '/wallpapers/wallpaper-ember-light.png',
@@ -45,7 +45,7 @@ export const WALLPAPERS = [
   {
     id: 'moss',
     label: 'Moss',
-    hint: 'Fresh greens, easy on the eyes',
+    hint: 'Green tones',
     kind: 'image',
     dark: '/wallpapers/wallpaper-moss-dark.png',
     light: '/wallpapers/wallpaper-moss-light.png',
@@ -53,7 +53,7 @@ export const WALLPAPERS = [
   {
     id: 'solar',
     label: 'Solar',
-    hint: 'Golden light, sunny mood',
+    hint: 'Gold tones',
     kind: 'image',
     dark: '/wallpapers/wallpaper-solar-dark.png',
     light: '/wallpapers/wallpaper-solar-light.png',

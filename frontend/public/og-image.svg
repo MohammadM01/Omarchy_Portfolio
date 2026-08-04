@@ -2,29 +2,26 @@
   <rect width="1200" height="630" fill="#07080d"/>
   <defs>
     <linearGradient id="tl" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#7DD3FC"/>
-      <stop offset="100%" stop-color="#A78BFA"/>
+      <stop stop-color="#6EC3F4"/><stop offset="1" stop-color="#8B7CF6"/>
     </linearGradient>
     <linearGradient id="tr" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#F472B6"/>
-      <stop offset="100%" stop-color="#F9A8D4"/>
+      <stop stop-color="#F472B6"/><stop offset="1" stop-color="#FB7185"/>
     </linearGradient>
     <linearGradient id="bl" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#60A5FA"/>
-      <stop offset="100%" stop-color="#A855F7"/>
+      <stop stop-color="#3B82F6"/><stop offset="1" stop-color="#A855F7"/>
     </linearGradient>
     <linearGradient id="br" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#E879F9"/>
-      <stop offset="100%" stop-color="#7DD3FC"/>
+      <stop stop-color="#E879F9"/><stop offset="1" stop-color="#38BDF8"/>
     </linearGradient>
   </defs>
-  <g transform="translate(100,165)">
-    <rect x="0" y="0" width="140" height="140" rx="36" fill="url(#tl)"/>
-    <rect x="160" y="0" width="140" height="140" rx="36" fill="url(#tr)"/>
-    <rect x="0" y="160" width="140" height="140" rx="36" fill="url(#bl)"/>
-    <rect x="160" y="160" width="140" height="140" rx="36" fill="url(#br)"/>
+  <!-- Big official-style square Windows mark -->
+  <g transform="translate(120,165)">
+    <rect x="0" y="0" width="140" height="140" rx="12" fill="url(#tl)"/>
+    <rect x="156" y="0" width="140" height="140" rx="12" fill="url(#tr)"/>
+    <rect x="0" y="156" width="140" height="140" rx="12" fill="url(#bl)"/>
+    <rect x="156" y="156" width="140" height="140" rx="12" fill="url(#br)"/>
   </g>
-  <text x="480" y="270" fill="#f4eef8" font-family="Segoe UI, Arial, sans-serif" font-size="52" font-weight="700">Mohammad Mulla</text>
-  <text x="480" y="330" fill="#a5b4fc" font-family="Segoe UI, Arial, sans-serif" font-size="28">Software Engineer · Full-Stack &amp; AI</text>
-  <text x="480" y="400" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="22">Windows 12 Fluent Portfolio</text>
+  <text x="520" y="270" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="52" font-weight="700">Mohammad Mulla</text>
+  <text x="520" y="330" fill="#a5b4fc" font-family="Segoe UI, Arial, sans-serif" font-size="28">Software Development Engineer</text>
+  <text x="520" y="400" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="22">Open to SDE roles · Mumbai / Remote</text>
 </svg>

@@ -108,6 +108,129 @@ html[data-theme="dark"] .win-mica-foc {
   -webkit-backdrop-filter: blur(100px) saturate(1.5);
 }
 
+/* Welcome hero card — theme-aware surfaces */
+.welcome-shell {
+  background: #f4f4f7;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+}
+
+html[data-theme="dark"] .welcome-shell {
+  background: #0f0f12;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.welcome-shell__body {
+  background: #f4f4f7;
+}
+
+html[data-theme="dark"] .welcome-shell__body {
+  background: #0f0f12;
+}
+
+.welcome-title {
+  color: #5c5c62;
+}
+
+html[data-theme="dark"] .welcome-title {
+  color: #c9c9ce;
+}
+
+.welcome-ctrl {
+  color: #6b6b72;
+}
+
+.welcome-ctrl:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: #3a3a40;
+}
+
+html[data-theme="dark"] .welcome-ctrl {
+  color: #a0a0a8;
+}
+
+html[data-theme="dark"] .welcome-ctrl:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #c9c9ce;
+}
+
+.welcome-name {
+  color: #111113;
+}
+
+html[data-theme="dark"] .welcome-name {
+  color: #ffffff;
+}
+
+.welcome-role {
+  color: #6b6b72;
+}
+
+html[data-theme="dark"] .welcome-role {
+  color: #a0a0a8;
+}
+
+.welcome-muted {
+  color: #6b6b72;
+}
+
+html[data-theme="dark"] .welcome-muted {
+  color: #a0a0a8;
+}
+
+.welcome-hint {
+  color: #8b8b92;
+}
+
+html[data-theme="dark"] .welcome-hint {
+  color: #6b6b72;
+}
+
+.welcome-secondary {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #111113;
+}
+
+.welcome-secondary:hover {
+  border-color: rgba(0, 0, 0, 0.22);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+html[data-theme="dark"] .welcome-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .welcome-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.welcome-resume {
+  color: #6b6b72;
+}
+
+.welcome-resume:hover {
+  color: #3a3a40;
+}
+
+html[data-theme="dark"] .welcome-resume {
+  color: #a0a0a8;
+}
+
+html[data-theme="dark"] .welcome-resume:hover {
+  color: #c9c9ce;
+}
+
+.welcome-badge-slot {
+  background: #f4f4f7;
+}
+
+html[data-theme="dark"] .welcome-badge-slot {
+  background: #0f0f12;
+}
+
 .win-theme-bar {
   background: linear-gradient(90deg, #ad6eca, #3b91d8);
 }
@@ -122,6 +245,7 @@ html[data-theme="dark"] .win-mica-foc {
 /* —— Desktop scene: aurora mesh + center mosaic —— */
 .desktop-scene {
   background: #07080d;
+  filter: brightness(var(--desktop-brightness, 1));
 }
 
 html[data-theme="light"] .desktop-scene {
@@ -360,6 +484,54 @@ html[data-theme="light"] .desktop-scene__vignette {
 }
 
 .win-logo-glow {
-  filter: drop-shadow(0 0 6px rgba(184, 217, 248, 0.55))
-    drop-shadow(0 0 14px rgba(201, 184, 232, 0.35));
+  filter: drop-shadow(0 2px 8px rgba(124, 168, 255, 0.45))
+    drop-shadow(0 0 16px rgba(232, 121, 249, 0.25));
+}
+
+/* Quick settings brightness slider */
+.qs-brightness {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  outline: none;
+}
+.qs-brightness::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: transparent;
+}
+.qs-brightness::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: transparent;
+  border: none;
+}
+.qs-brightness::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: transparent;
+}
+.qs-brightness::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: #f8fafc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+.qs-brightness::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #f8fafc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
 }

@@ -2,16 +2,16 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
 /**
- * Site logo — Fluent 4-tile mosaic (logo.png / favicon only).
+ * Official-style Windows square logo (4 panes, full square — no black padding).
  */
 export function WinLogo({ className = 'h-5 w-5', glow = true }) {
   return (
     <img
-      src="/logo.png"
+      src="/win-logo.svg"
       alt=""
       draggable={false}
       className={clsx(
-        'object-contain',
+        'aspect-square object-contain',
         glow && 'win-logo-glow',
         className,
       )}
@@ -41,7 +41,7 @@ export function Monogram({ value = 'MM', size = 'md', className = '', accent }) 
       style={{
         background:
           accent ||
-          'linear-gradient(135deg, #7DD3FC 0%, #A78BFA 50%, #F472B6 100%)',
+          'linear-gradient(135deg, #6EC3F4 0%, #8B7CF6 50%, #F472B6 100%)',
         color: accent ? '#fff' : '#1a1a2e',
       }}
     >

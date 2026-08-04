@@ -20,12 +20,12 @@ function ProjectDetailContent({ project }) {
   })
 
   return (
-    <Window id={`project-${project.id}`} title={project.name} width={560}>
+    <Window id={`project-${project.id}`} title={project.name} width={660}>
       <div className="space-y-4">
         <img
           src={project.image}
           alt={`${project.name} preview`}
-          className="h-36 w-full border border-win-border object-cover"
+          className="h-40 w-full rounded-lg border border-win-border object-cover"
         />
 
         <header>

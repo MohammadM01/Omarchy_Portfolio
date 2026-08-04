@@ -3,7 +3,7 @@ import { experience } from '../../data/portfolioData'
 
 export function ExperienceWindow() {
   return (
-    <Window id="experience" title="Experience" width={540}>
+    <Window id="experience" title="Experience" width={640}>
       <div className="space-y-6">
         {experience.map((job) => (
           <article key={job.id} className="relative border-l-2 border-[#107C10]/40 pl-4">

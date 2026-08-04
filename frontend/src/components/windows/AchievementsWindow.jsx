@@ -3,7 +3,7 @@ import { achievements } from '../../data/portfolioData'
 
 export function AchievementsWindow() {
   return (
-    <Window id="achievements" title="Achievements" width={540}>
+    <Window id="achievements" title="Achievements" width={640}>
       <ol className="space-y-5">
         {achievements.map((item, index) => (
           <li key={item.id} className="flex gap-4">

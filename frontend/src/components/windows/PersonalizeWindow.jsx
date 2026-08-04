@@ -46,18 +46,17 @@ export function PersonalizeWindow() {
   } = useTheme()
 
   return (
-    <Window id="personalize" title="Personalize" width={560} height={640}>
+    <Window id="personalize" title="Personalize" width={660} height={760}>
       <div className="space-y-6">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-win-accent">
             Appearance
           </p>
           <h2 className="mt-1 text-lg font-semibold text-win-text">
-            Make it feel like home
+            Appearance
           </h2>
           <p className="mt-1 text-sm text-win-muted">
-            Pick a theme, then a wallpaper. Dark and light versions stay matched
-            for you.
+            Pick a theme and wallpaper. Dark and light versions stay matched.
           </p>
         </div>
 
@@ -187,10 +186,10 @@ export function PersonalizeWindow() {
           <div className="flex items-start gap-3">
             <Monitor className="mt-0.5 h-4 w-4 shrink-0 text-win-accent" />
             <div>
-              <p className="text-sm font-medium text-win-text">Quick tip</p>
+              <p className="text-sm font-medium text-win-text">Tip</p>
               <p className="text-[13px] text-win-muted">
-                Right-click the desktop → Personalize anytime. Or flip Light /
-                Dark from the taskbar in one click.
+                Right-click the desktop and open Personalize anytime. Or switch
+                Light / Dark from the taskbar.
               </p>
             </div>
           </div>
