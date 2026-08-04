@@ -10,7 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
 const site = (
   process.env.VITE_SITE_URL ||
-  'https://portfolio-chi-steel-82.vercel.app'
+  'https://mohammadmulla.com'
 ).replace(/\/$/, '')
 
 const today = new Date().toISOString().slice(0, 10)

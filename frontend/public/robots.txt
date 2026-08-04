@@ -4,4 +4,4 @@ Allow: /
 Disallow: /api/
 Disallow: /backend/
 
-Sitemap: https://portfolio-chi-steel-82.vercel.app/sitemap.xml
+Sitemap: https://mohammadmulla.com/sitemap.xml

@@ -1,6 +1,6 @@
 /**
  * Site SEO / GEO / AEO config.
- * Set VITE_SITE_URL when you buy a domain (e.g. https://mohammadmulla.dev).
+ * VITE_SITE_URL can override this value for preview deployments.
  */
 import { profile, projects, badges } from '../data/portfolioData'
 import { BRAND_NAME } from '../constants'
@@ -8,7 +8,7 @@ import { BRAND_NAME } from '../constants'
 const FALLBACK_ORIGIN =
   typeof window !== 'undefined' && window.location?.origin
     ? window.location.origin
-    : 'https://portfolio-chi-steel-82.vercel.app'
+    : 'https://mohammadmulla.com'
 
 export const SITE_URL = (
   import.meta.env.VITE_SITE_URL || FALLBACK_ORIGIN
