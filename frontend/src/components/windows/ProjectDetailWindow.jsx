@@ -25,6 +25,10 @@ function ProjectDetailContent({ project }) {
         <img
           src={project.image}
           alt={`${project.name} preview`}
+          width="640"
+          height="320"
+          loading="lazy"
+          decoding="async"
           className="h-40 w-full rounded-lg border border-win-border object-cover"
         />
 

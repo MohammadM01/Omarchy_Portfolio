@@ -23,7 +23,11 @@ export function ProjectsWindow() {
           >
             <img
               src={project.image}
-              alt=""
+              alt={`${project.name} project preview`}
+              width="640"
+              height="320"
+              loading="lazy"
+              decoding="async"
               className="h-32 w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             />
             <div className="flex flex-col gap-2 p-3 pt-1">

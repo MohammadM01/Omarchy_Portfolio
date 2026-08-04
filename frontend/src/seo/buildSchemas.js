@@ -21,6 +21,7 @@ export function buildPersonSchema() {
     '@type': 'Person',
     '@id': `${SITE_URL}/#person`,
     name: profile.name,
+    alternateName: 'Mohammad Mo',
     jobTitle: profile.title,
     description: profile.summary,
     url: SITE_URL,
@@ -47,6 +48,14 @@ export function buildPersonSchema() {
       '@type': 'CollegeOrUniversity',
       name: education.school,
       address: education.location,
+    },
+    hasOccupation: {
+      '@type': 'Occupation',
+      name: profile.title,
+      occupationLocation: {
+        '@type': 'City',
+        name: GEO.metro,
+      },
     },
     knowsAbout: Object.values(skills).flat(),
     award: achievements.map((a) => a.title),
